@@ -1,5 +1,5 @@
 # ======================================= Laços de Repetição / iteração (for) ========================================
-
+# =======================================FOR SIGNIFICA PARA =========================================================
 # essa é a estrutura basica do for, o (c) esta representando uma variavel, pode ser qualquer nome. (1,10) = intervalo de 1 a 10.
 for c in range(1, 10):
 
