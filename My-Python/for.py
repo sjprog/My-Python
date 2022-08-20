@@ -58,7 +58,7 @@ print('FIM')
 
 # contagem de 1 até 6
 for c in range(1, 7):
-    print(C)
+    print(c)
 print('FIM')
 
 # contagem negativa, pra traz, tem que colocar negativo, esse -1 é o intervalo, pode ser positivo tambem
@@ -113,7 +113,7 @@ for digit in "0165031806510":
         print("x", end="")
         continue
     print(digit, end="")
-    
+
 
 # Faça um programa que mostre uma contagem regresiva na tela para o estouro de fogos, indo de 10 até 0, com uma
 # pausa de 1 segundo entre eles.
