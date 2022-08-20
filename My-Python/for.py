@@ -17,6 +17,37 @@ for i in range(1, 10):
     if i % 2 == 0:
         print(i)
 
+# Pode utilizar as declarações break e continue para alterar o fluxo de um loop:
+
+# Utilize break para sair de um loop, por exemplo:
+text = "OpenEDG Python Institute"
+for letter in text:
+    if letter == "P":
+        break
+    print(letter, end="")
+
+# Utilize continue para ignorar a iteração atual e continuar com a próxima iteração, por exemplo:
+text = "pyxpyxpyx"
+for letter in text:
+    if letter == "x":
+        continue
+    print(letter, end="")
+
+# O objeto da exceção range() gera uma sequência de números. Aceita números inteiros e devolve objetos de range.
+# A sintaxe de range() parece como se segue: range(start, stop, step), onde:
+
+# start é um parâmetro opcional que especifica o número inicial da sequência (0 por padrão)
+# stop é um parâmetro opcional que especifica o fim da sequência gerada (não está incluído),
+# e step é um parâmetro opcional que especifica a diferença entre os números na sequência (1 por padrão.)
+
+for i in range(3):
+    print(i, end=" ")  # Outputs: 0 1 2
+
+for i in range(6, 1, -2):
+    print(i, end=" ")  # Outputs: 6, 4, 2
+
+# =========================================================================================================================
+
 # essa é a estrutura basica do for, o (c) esta representando uma variavel, pode ser qualquer nome. (1,10) = intervalo de 1 a 10.
 for c in range(1, 10):
 
@@ -62,6 +93,26 @@ for c in range(0, 4):
 print(f'O somatório de todos os valores foi {s}')
 
 # ============================================= Praticar ==============================================
+
+# Crie um loop for que conta de 0 a 10, e imprime os números ímpares
+for i in range(0, 11):
+    if i % 2 != 0:
+        print(i)
+
+# Crie um programa com um loop for e uma declaração break . O programa deve iterar sobre os caracteres de um endereço de
+# e-mail, sair do loop quando chegar ao símbolo @ , e imprimir a parte antes de @ numa linha.
+for ch in "john.smith@pythoninstitute.org":
+    if ch == "@":
+        break
+    print(ch, end="")
+
+# Crie um programa com um loop for e uma declaração continue . O programa deve iterar sobre uma string de dígitos, substituir
+# cada 0 com xe imprimir a string modificada no ecrã.
+for digit in "0165031806510":
+    if digit == "0":
+        print("x", end="")
+        continue
+    print(digit, end="")
 
 # Faça um programa que mostre uma contagem regresiva na tela para o estouro de fogos, indo de 10 até 0, com uma
 # pausa de 1 segundo entre eles.
