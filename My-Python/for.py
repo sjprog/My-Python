@@ -113,6 +113,7 @@ for digit in "0165031806510":
         print("x", end="")
         continue
     print(digit, end="")
+    
 
 # Faça um programa que mostre uma contagem regresiva na tela para o estouro de fogos, indo de 10 até 0, com uma
 # pausa de 1 segundo entre eles.
