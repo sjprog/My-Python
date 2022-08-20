@@ -1,5 +1,22 @@
 # ======================================= Laços de Repetição / iteração (for) ========================================
 # =======================================FOR SIGNIFICA PARA =========================================================
+
+# ======================================= Significado =================================================================
+
+# O loop for executa um conjunto de declarações várias vezes; é usado para iterar sobre uma sequência (por exemplo, uma lista,
+# um dicionário, um tuple, ou um conjunto - aprenderá sobre eles em breve) ou outros objetos que são iteráveis (por exemplo, strings).
+# Pode utilizar o loop for para iterar sobre uma sequência de números usando a função range
+
+# Example 1
+word = "Python"
+for letter in word:
+    print(letter, end="*")
+
+# Example 2
+for i in range(1, 10):
+    if i % 2 == 0:
+        print(i)
+
 # essa é a estrutura basica do for, o (c) esta representando uma variavel, pode ser qualquer nome. (1,10) = intervalo de 1 a 10.
 for c in range(1, 10):
 
