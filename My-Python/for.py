@@ -10,7 +10,7 @@
 # Example 1
 word = "Python"
 for letter in word:
-    print(letter, end="*")
+    print(letter, end="*")  # POR DEFINIÇAO O (end='') junta com o proximo texto (sep='') serve para separar os textos as strings separadas por virgula.
 
 # Example 2
 for i in range(1, 10):
