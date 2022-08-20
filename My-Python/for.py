@@ -115,8 +115,8 @@ for digit in "0165031806510":
     print(digit, end="")
 
 
-# ==============================Faça um programa que mostre uma contagem regresiva na tela para o estouro de fogos, indo de 10 até 0, com uma
-# pausa de 1 segundo entre eles.==================================
+# ===================================================Faça um programa que mostre uma contagem regresiva na tela para o estouro
+# de fogos, indo de 10 até 0, com uma pausa de 1 segundo entre eles.=========================================================
 
 # Minha resposta
 import time
@@ -124,3 +124,15 @@ for i in range(0, 11):
     time.sleep(1)
     print(i)
 print('Bommmmmmmmmmmm!!!!')
+
+
+# =========================================Crie um programa que mostre na tela todos os números pares que estão no intervalo entre 1 e 50.
+
+# Minha resposta numeros impares
+for i in range(0, 50):
+     if i % 2 != 0:
+        print(i)
+# Minha resposta numeros pares
+for i in range(0, 50):
+     if i % 2 == 0:
+        print(i)
