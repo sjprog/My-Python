@@ -1,2 +1,2 @@
 # My-Python
-My-Python
+Projeto de Estudo
