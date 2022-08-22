@@ -133,7 +133,8 @@ for cont in range(10, -1, -1):
 print('ACABOU!')
 
 
-# =========================================Crie um programa que mostre na tela todos os números pares que estão no intervalo entre 1 e 50.
+# ========================================Crie um programa que mostre na tela todos os números pares que estão no intervalo entre 1 e 50.
+# ===================================================================================================================
 
 # Minha resposta numeros impares
 for i in range(0, 51):
@@ -149,3 +150,13 @@ for n in range(2, 51, 2):
     print(n, end=' ')
 print('Acabou')
 
+# =========================================Faça um programa que calcule a soma entre todos os números que são múltiplos de três e que se encontram
+# no intervalo de 1 até 500.================================================================================================================
+
+
+# ================================================================Refaça o a tabuada, mostrando o um número que o usuário escolher,
+# só que agora utilizando um laço for.=====================================================================================
+
+
+# ==================================================== Desenvolva um programa que leia seis números inteiros e mostre a soma apenas daqueles
+# que forem pares. Se o valor digitado for ímpar, desconsidere-o.======================================================
