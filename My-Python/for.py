@@ -125,6 +125,13 @@ for i in range(0, 11):
     print(i)
 print('Bommmmmmmmmmmm!!!!')
 
+# Resposta
+from time import sleep
+for cont in range(10, -1, -1):
+    print(cont)
+    sleep(0.5)
+print('ACABOU!')
+
 
 # =========================================Crie um programa que mostre na tela todos os números pares que estão no intervalo entre 1 e 50.
 
