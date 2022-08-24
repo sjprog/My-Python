@@ -153,6 +153,17 @@ print('Acabou')
 # =========================================Faça um programa que calcule a soma entre todos os números que são múltiplos de três e que se encontram
 # no intervalo de 1 até 500.================================================================================================================
 
+# Minha reposta
+valores = 0
+soma =0
+for i in range(1, 501):
+    if i % 3 == 0:
+        valores += i
+        soma += 1
+        print(i)
+print (f' A soma de todos os {soma} valores é : {valores} ')
+
+# Resposta
 
 # ================================================================Refaça o a tabuada, mostrando o um número que o usuário escolher,
 # só que agora utilizando um laço for.=====================================================================================
