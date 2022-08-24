@@ -174,7 +174,7 @@ print(f'A soma de todos os {cont} valores solicitados é {soma}')
 
 
 
-# ================================================================Refaça o a tabuada, mostrando o um número que o usuário escolher,
+# ================================================================Refaça a tabuada, mostrando um número que o usuário escolher,
 # só que agora utilizando um laço for.=====================================================================================
 
 
