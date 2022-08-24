@@ -156,7 +156,7 @@ print('Acabou')
 # Minha reposta
 valores = 0
 soma =0
-for i in range(1, 501):
+for i in range(1, 501, 2):
     if i % 3 == 0:
         valores += i
         soma += 1
@@ -164,6 +164,15 @@ for i in range(1, 501):
 print (f' A soma de todos os {soma} valores é : {valores} ')
 
 # Resposta
+soma = 0
+cont = 0
+for c in range(1, 501, 2): # contage de 1 ate 500
+    if c % 3 == 0: # numeros divisiveis por 3
+        soma += c
+        cont += 1
+print(f'A soma de todos os {cont} valores solicitados é {soma}')
+
+
 
 # ================================================================Refaça o a tabuada, mostrando o um número que o usuário escolher,
 # só que agora utilizando um laço for.=====================================================================================
