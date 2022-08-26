@@ -80,3 +80,31 @@ objeto2 = pd.Series(array2)  # duas dimensòes nao funciona
 print(objeto2)
 
 # ==================================================== Comandos úteis do Pandas =======================================================
+import pandas as pd
+alunosDic = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma tebela, criando um dicionario e uma lista
+          'Nota':[4, 5, 9, 5.8],
+          'Aprovado':['Não', 'Sim', 'Sim', 'Não']}
+
+alunosDF = pd.DataFrame(alunosDic)
+
+print(alunosDF.head()) # mostra o cabeçlho
+
+#     Nome  Nota Aprovado
+# 0  Sidney   4.0      Não
+# 1   Pedro   5.0      Sim
+# 2   Carla   9.0      Sim
+# 3   Paula   5.8      Não
+
+print(alunosDF.shape) # mostra quantas linhas e quantas colunas temos
+# (4, 3)
+
+print(alunosDF.describe()) # mostra informaçoes sobre os dados numericos, mostra a media o minimo entre outras informações.
+#      Nota
+# count  4.00000
+# mean   5.95000
+# std    2.16256
+# min    4.00000
+# 25%    4.75000
+# 50%    5.40000
+# 75%    6.60000
+# max    9.00000
