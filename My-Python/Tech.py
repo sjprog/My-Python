@@ -196,3 +196,5 @@ print(alunosDF.loc[alunosDF['Aprovado']=='Sim']) # apenas os aprovados
 
  #  Dicas sobre o pandas
  https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf
+
+
