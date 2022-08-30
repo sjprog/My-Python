@@ -198,3 +198,5 @@ print(alunosDF.loc[alunosDF['Aprovado']=='Sim']) # apenas os aprovados
  https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf
 
 
+# ===================================================Solução do exercício - Encontrando Percentuais =======================================
+
