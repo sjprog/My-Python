@@ -1,7 +1,9 @@
-
 import pandas as pd
-df = pd.read_excel('D:/tech/tech.xlsx')
 
-print(df)
+dados = pd.read_csv('D:/tech/athlete_events.csv')  # da mesma forma porem com arquivo csv
+
+
+dados2 = dados.describe() # mostra todos os dados
+print(dados2)
 
 

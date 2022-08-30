@@ -198,5 +198,118 @@ print(alunosDF.loc[alunosDF['Aprovado']=='Sim']) # apenas os aprovados
  https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf
 
 
-# ===================================================Solução do exercício - Encontrando Percentuais =======================================
+# =================================================== Manipulando linhas com o Pandas ================================================
 
+import pandas as pd
+alunosDic = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma tebela, criando um dicionario e uma lista
+          'Nota':[4, 5, 9, 5.8],
+          'Aprovado':['Não', 'Sim', 'Sim', 'Não']}
+
+alunosDF = pd.DataFrame(alunosDic)
+
+primeiraslinhas = alunosDF.loc[0:2] # linhas de 0 até 2, criando variaveis novas nao perdemos os dados anteriores. primeiraslinhas é uma copia do alunosDF
+print(primeiraslinhas)
+#      Nome  Nota Aprovado
+# 0  Sidney   4.0      Não
+# 1   Pedro   5.0      Sim
+# 2   Carla   9.0      Sim
+
+
+novoDF = alunosDF.loc[alunosDF['Nota']!=9] # excluiu a nota 9
+print(novoDF)
+#      Nome  Nota Aprovado
+# 0  Sidney   4.0      Não
+# 1   Pedro   5.0      Sim
+# 3   Paula   5.8      Não
+
+# ========================================================== Manipulando colunas com o Pandas ====================================================================
+
+import pandas as pd
+
+dados = pd.read_csv('D:/tech/athlete_events.csv')  # da mesma forma porem com arquivo csv
+
+dados.rename(columns={'Name': 'Nome', 'Sex': 'Sexo', 'Age': 'Idade'}, inplace = True) # atribui os valores
+print(dados.columns)
+# Index(['ID', 'Nome', 'Sexo', 'Idade', 'Height', 'Weight', 'Team', 'NOC',
+#        'Games', 'Year', 'Season', 'City', 'Sport', 'Event', 'Medal'],
+#       dtype='object')
+
+
+print(dados['Height']) # mostra apenas os dados de uma coluna especifica, nesse caso da aultura
+# 271111    179.0
+# 271112    176.0
+# 271113    176.0
+# 271114    185.0
+# 271115    185.0
+
+altura = dados['Height']
+print(altura) # dados recebe altura
+# 271111    179.0
+# 271112    176.0
+# 271113    176.0
+# 271114    185.0
+# 271115    185.0
+# Name: Height, Length: 271116, dtype: float64
+
+altura = dados['Height']
+print(type(altura))
+# <class 'pandas.core.series.Series'>
+
+print(dados['Medal'].value_counts()) # mostra quantas vezes os valores aparece
+# Gold      13372
+# Bronze    13295
+# Silver    13116
+# Name: Medal, dtype: int64
+
+dados2 = dados['Medal'].value_counts() # mostra quantas vezes os valores aparece
+print(dados2)
+# Gold      13372
+# Bronze    13295
+# Silver    13116
+# Name: Medal, dtype: int64
+
+dados2 = dados['Name'].value_counts() # mostra quantas vezes os valores aparece
+print(dados2)
+# Robert Tait McKenzie            58
+# Heikki Ilmari Savolainen        39
+# Joseph "Josy" Stoffel           38
+# Ioannis Theofilakis             36
+# Takashi Ono                     33
+#                                 ..
+# Tatyana Vasilyevna Kalmykova     1
+# Mariya Lvovna Kalmykova          1
+# Christine Kalmer                 1
+# Joannis "Jannis" Kalmazidis      1
+# Pierre-Georges LeClercq          1
+# Name: Name, Length: 134732, dtype: int64
+
+dados2 = dados['City'].value_counts() # mostra quantas vezes os valores aparece
+print(dados2)
+# London                    22426
+# Athina                    15556
+# Sydney                    13821
+# Atlanta                   13780
+# Rio de Janeiro            13688
+# Beijing                   13602
+# Barcelona                 12977
+# ..................
+
+dados2 = dados['Sex'].value_counts() # mostra quantas vezes os valores aparece
+print(dados2)
+# M    196594
+# F     74522
+# Name: Sex, dtype: int64
+
+dados2 = dados.describe() # mostra todos os dados
+print(dados2)
+#                   ID            Age  ...         Weight           Year
+# count  271116.000000  261642.000000  ...  208241.000000  271116.000000
+# mean    68248.954396      25.556898  ...      70.702393    1978.378480
+# std     39022.286345       6.393561  ...      14.348020      29.877632
+# min         1.000000      10.000000  ...      25.000000    1896.000000
+# 25%     34643.000000      21.000000  ...      60.000000    1960.000000
+# 50%     68205.000000      24.000000  ...      70.000000    1988.000000
+# 75%    102097.250000      28.000000  ...      79.000000    2002.000000
+# max    135571.000000      97.000000  ...     214.000000    2016.000000
+
+# ========================================================== Como excluir colunas no Pandas ====================================================================
