@@ -313,3 +313,15 @@ print(dados2)
 # max    135571.000000      97.000000  ...     214.000000    2016.000000
 
 # ========================================================== Como excluir colunas no Pandas ====================================================================
+import pandas as pd
+
+dados = pd.read_csv('D:/tech/athlete_events.csv')  # da mesma forma porem com arquivo csv
+
+# axis = 0    é uma linha    axis = 1    é uma coluna
+dados.drop('ID', axis = 1, inplace = True) # exclui essas colunas, id, city, season
+dados.drop('City', axis = 1, inplace = True)
+dados.drop('Season', axis = 1, inplace = True)
+print(dados.columns)
+# Index(['Name', 'Sex', 'Age', 'Height', 'Weight', 'Team', 'NOC', 'Games',
+#        'Year', 'Sport', 'Event', 'Medal'],
+#       dtype='object')
