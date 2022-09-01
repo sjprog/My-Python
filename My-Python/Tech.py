@@ -337,3 +337,41 @@ print(dados.columns)
 #       dtype='object')
 
 # ================================================ Função groupby - Pandas =============================================
+# criar grupos a partir de um determinado criterio.
+
+import pandas as pd
+alunosDic = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma tebela, criando um dicionario e uma lista
+          'Nota':[4, 5, 9, 5.8],
+          'Aprovado':['Não', 'Sim', 'Sim', 'Não']}
+
+alunosDF = pd.DataFrame(alunosDic)
+# alunosDF.groupby(['Nome'])   # fazer com um grupo
+# alunosDF.groupby(['Nome', 'Nota'])    #fazer com varios grupos
+
+# print(alunosDF.groupby(['Nome', 'Nota'])) # ao fazer essa aplicação criamos um DataFrame
+# <pandas.core.groupby.generic.DataFrameGroupBy object at 0x00000289E37A6FD0>
+
+alunosDF.groupby(['Nome']).count() # faz uma contagem nao é mais DtaFrame grupy e passa a ser um panda.
+print(alunosDF.groupby(['Nome']).count()) # imprimindo pra ver ele funcionando, qualquer coisa pode colocar isso em
+# uma função e imprimir a função.
+#         Nota  Aprovado
+# Nome
+# Carla      1         1
+# Paula      1         1
+# Pedro      1         1
+# Sidney     1         1
+
+alunosDF.groupby(['Nome']).count()['Sidney'].sort_values() # ordernar por ordem crescente
+alunosDF.groupby(['Idade']).sum() # vai somar as linhas da coluna
+
+#  retorna apenas uma ocorrencia de cada atleta, não conta duas vezes o atleta.
+alunosDF.groupby('Atletas').nunique()['Name']
+
+#  retornar varios valores juntos.
+alunosDF.groupby('Atletas').agg({'Name': 'nunique',
+                                 'Medal': 'count',
+                                 'Games': 'nunique'})  # chamamos uma função, nesse exemplo temos 3 tabelas name, medal,
+# games e cada tabela  retorna um parametro selecionado
+
+# ============================================= Como criar histogramas ================================================
+# histograma é um grafico de barras
