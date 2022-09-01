@@ -5,7 +5,8 @@
  https://didatica.tech/o-pacote-numpy-python-para-machine-learning/
 
 # O Numpy é um dos principais pacotes da linguagem Python para machine learning e inteligência artificial.
-# Essencialmente, ele é um pacote para operações matemáticas, possuindo assim muitas funções prontas para estas operações.
+# Essencialmente, ele é um pacote para operações matemáticas, possuindo assim muitas funções
+# prontas para estas operações.
 
 import numpy  # importar o numpy
 a = numpy.array([1, 2, 3])  # array com uma lista, elementos do mesmo tipo
@@ -26,20 +27,23 @@ print(a)
 # uma funçào do np para criar matriz
 a = np.zeros((4, 3)) # 4 colunas 3 elementos tudo com numeros 0
 a = np.ones((4, 3))  # 4 colunas 3 elementos tudo com numeros 1
-a = np.eyes(4) # cria uma matriz quadrada 4 linhas e 4 colunas, diagonal com 1, pode ser 10 por 10, basta trocar o 4 pelo numero desejado
+a = np.eyes(4) # cria uma matriz quadrada 4 linhas e 4 colunas, diagonal com 1, pode ser 10 por 10, basta
+# trocar o 4 pelo numero desejado
 print(a.max()) # fala qual o maior elemento da matriz
 print(a.min()) # menor elemento da matriz
 print(a.sum()) #  soma da matriz
 print(a.mean()) # media dos elementos da matriz
 print(a.std()) # desvio padrão da matriz
 
-# ========================================== Arquivos com o Pandas - XLSX e CSV ===========================================
+# ======================================== Arquivos com o Pandas - XLSX e CSV ==========================================
 
 # crie um arquivo no exel com linhas e colunas.
 
 import pandas as pd # pd = apelida para facilitar
-dados = pd.read_excel('D:/tech/tech.xlsx') # tem que inverter a direção da barra, depois digita o nome do arquivo manualmente
-print(dados.head()) # função do panda de cabeçalho ela so mostra as primeiras 5 linhas, caso queira mais linhas digite um o
+dados = pd.read_excel('D:/tech/tech.xlsx') # tem que inverter a direção da barra, depois digita o nome do
+# arquivo manualmente
+print(dados.head()) # função do panda de cabeçalho ela so mostra as primeiras 5 linhas, caso queira
+# mais linhas digite um o
 # numero nas aspas do head
 
 #  site com link de dados para baixar:
@@ -58,7 +62,7 @@ pip.main(["install", "openpyxl"])
 pip install defusedxml
 
 
-# ======================================= Introdução ao Pandas ===========================================================
+# ======================================== Introdução ao Pandas ========================================================
 
 import pandas as pd
 alunos = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma tebela, criando um dicionario e uma lista
@@ -102,7 +106,7 @@ print(objeto2)
 objeto2 = pd.Series(array2)  # duas dimensòes nao funciona
 print(objeto2)
 # dtype: int32
-# ==================================================== Comandos úteis do Pandas =======================================================
+# ============================================ Comandos úteis do Pandas ================================================
 import pandas as pd
 alunosDic = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma tebela, criando um dicionario e uma lista
           'Nota':[4, 5, 9, 5.8],
@@ -121,7 +125,8 @@ print(alunosDF.head()) # mostra o cabeçlho
 print(alunosDF.shape) # mostra quantas linhas e quantas colunas temos
 # (4, 3)
 
-print(alunosDF.describe()) # mostra informaçoes sobre os dados numericos, mostra a media o minimo entre outras informações.
+print(alunosDF.describe()) # mostra informaçoes sobre os dados numericos, mostra a media
+# o minimo entre outras informações.
 #      Nota
 # count  4.00000
 # mean   5.95000
@@ -132,7 +137,7 @@ print(alunosDF.describe()) # mostra informaçoes sobre os dados numericos, mostr
 # 75%    6.60000
 # max    9.00000
 
-# ================================================ Filtrando linhas e colunas no Pandas ==========================================
+# ===================================== Filtrando linhas e colunas no Pandas ==========================================
 
 print(alunosDF['Nome'])
 # 0    Sidney
@@ -155,7 +160,8 @@ print(alunosDF['Aprovado'])
 # 3    Não
 # Name: Aprovado, dtype: object
 
-print(alunosDF.loc[[0]]) # chama a linha 0, pode informar outros valores,  pode criar uma lista e colocar uma outra lista dentro
+print(alunosDF.loc[[0]]) # chama a linha 0, pode informar outros valores, pode criar uma lista
+# e colocar uma outra lista dentro
 #      Nome  Nota Aprovado
 # 0  Sidney   4.0      Não
 
@@ -192,13 +198,13 @@ print(alunosDF.loc[alunosDF['Aprovado']=='Sim']) # apenas os aprovados
 # 1  Pedro   5.0      Sim
 # 2  Carla   9.0      Sim
 
-# ===================================================== Cheat Sheet (Folha de dicas) - Pandas ==============================================
+# ===================================== Cheat Sheet (Folha de dicas) - Pandas ==========================================
 
  #  Dicas sobre o pandas
  https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf
 
 
-# =================================================== Manipulando linhas com o Pandas ================================================
+# =========================================== Manipulando linhas com o Pandas ==========================================
 
 import pandas as pd
 alunosDic = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma tebela, criando um dicionario e uma lista
@@ -207,7 +213,8 @@ alunosDic = {'Nome': ['Sidney', 'Pedro', 'Carla', 'Paula'], # vamos criar uma te
 
 alunosDF = pd.DataFrame(alunosDic)
 
-primeiraslinhas = alunosDF.loc[0:2] # linhas de 0 até 2, criando variaveis novas nao perdemos os dados anteriores. primeiraslinhas é uma copia do alunosDF
+primeiraslinhas = alunosDF.loc[0:2] # linhas de 0 até 2, criando variaveis novas nao perdemos os dados anteriores.
+# primeiraslinhas é uma copia do alunosDF
 print(primeiraslinhas)
 #      Nome  Nota Aprovado
 # 0  Sidney   4.0      Não
@@ -222,7 +229,7 @@ print(novoDF)
 # 1   Pedro   5.0      Sim
 # 3   Paula   5.8      Não
 
-# ========================================================== Manipulando colunas com o Pandas ====================================================================
+# =================================== Manipulando colunas com o Pandas =================================================
 
 import pandas as pd
 
@@ -294,11 +301,14 @@ print(dados2)
 # Barcelona                 12977
 # ..................
 
-dados2 = dados['Sex'].value_counts() # mostra quantas vezes os valores aparece
+dados2 = dados['Sex'].value_counts() # mostra quantas vezes os valores aparece, é uma contagem.
 print(dados2)
 # M    196594
 # F     74522
 # Name: Sex, dtype: int64
+
+dados2 = dados['Sex'].value_counts().index.values # exemplo para filtrar melhor os dados de amostra, os valores do index.
+print(dados2)
 
 dados2 = dados.describe() # mostra todos os dados
 print(dados2)
@@ -312,7 +322,7 @@ print(dados2)
 # 75%    102097.250000      28.000000  ...      79.000000    2002.000000
 # max    135571.000000      97.000000  ...     214.000000    2016.000000
 
-# ========================================================== Como excluir colunas no Pandas ====================================================================
+# ======================================== Como excluir colunas no Pandas ==============================================
 import pandas as pd
 
 dados = pd.read_csv('D:/tech/athlete_events.csv')  # da mesma forma porem com arquivo csv
@@ -325,3 +335,5 @@ print(dados.columns)
 # Index(['Name', 'Sex', 'Age', 'Height', 'Weight', 'Team', 'NOC', 'Games',
 #        'Year', 'Sport', 'Event', 'Medal'],
 #       dtype='object')
+
+# ================================================ Função groupby - Pandas =============================================
