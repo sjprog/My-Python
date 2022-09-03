@@ -114,6 +114,13 @@ for digit in "0165031806510":
         continue
     print(digit, end="")
 
+# Calcular 3 numeros e fazer a media deles.
+soma = 0
+for i in range(1, 4):
+    nota = (int(input(f'Digite um numero no posição {i}: ')))
+    soma += nota
+print(soma / 3)
+
 
 # ===================================================Faça um programa que mostre uma contagem regresiva na tela para o estouro
 # de fogos, indo de 10 até 0, com uma pausa de 1 segundo entre eles.=========================================================

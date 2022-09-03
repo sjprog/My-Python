@@ -31,14 +31,18 @@
 
 import matplotlib.pyplot as plt # biblioteca criada para criar graficos.
 import pandas as pd # pd = apelida para facilitar
-dados = pd.read_excel('D:/tech/tech.xlsx')
+#dados = pd.read_excel('D:/tech/tech.xlsx')
 
-dados.hist(column='Coluna2', bins=8) # informa o nome da coluna que contenha numeros, bins é o numero de
+#dados.hist(column='Coluna2', bins=8) # informa o nome da coluna que contenha numeros, bins é o numero de
 # linhas para a amostra
-print(plt.show()) # imprime o grafico
+#print(plt.show()) # imprime o grafico
 
-plt.hist(nome_array, bins=20) # fazendo a mesma amostra em barras, porem com array nao com o panda, onde esta
+#plt.hist(nome_array, bins=20) # fazendo a mesma amostra em barras, porem com array nao com o panda, onde esta
 # nome_array deve colocar o nome que achar melhor
 
 
-
+soma = 0
+for i in range(1, 4):
+    nota = (int(input(f'Digite um numero no posição {i}: ')))
+    soma += nota
+print(soma / 3)
