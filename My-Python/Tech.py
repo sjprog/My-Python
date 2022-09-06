@@ -387,3 +387,23 @@ print(plt.show()) # imprime o grafico
 
 plt.hist(nome_array, bins=20) # fazendo a mesma amostra em barras, porem com array nao com o panda, onde esta
 # nome_array deve colocar o nome que achar melhor
+
+# ======================================== O que é um boxplot e como calcular ==========================================
+
+
+# ========================================== Criando boxplot usando Python ============================================
+
+import matplotlib.pyplot as plt # biblioteca criada para criar graficos.
+import pandas as pd # pd = apelida para facilitar
+dados = pd.read_excel('D:/tech/tech.xlsx')
+print(dados.head())
+
+
+import matplotlib.pyplot as plt
+dados.boxplot(column='contato') # comando para criar um boxplot
+print(plt.show())
+
+
+import matplotlib.pyplot as plt
+dados.boxplot(column=['idade','numero','contato']) # dessa forma ele mostra varios boxplot
+print(plt.show())
