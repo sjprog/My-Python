@@ -483,7 +483,7 @@ print(dados.head(100)) # esse valor  100 significa que quero verificar as primei
 
 
 # ========================================= código de Machine Learning ================================================
-
+# itulizei esse site pra pegar o exemplo csv     https://www.kaggle.com/datasets/dell4010/wine-dataset
 import pandas as pd
 
 vinho = pd.read_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Python/exemploscsv/wineQualityReds.csv')  # náo
@@ -566,6 +566,161 @@ print(previsaoes)
 
 # ============================================== Prevendo dados diariamente com Machine Learning =======================
 
+# utilizei esse site para fazer      https://www.kaggle.com/datasets/benjibb/sp500-since-1950
+
+import pandas as pd # importou o pandas
+df = pd.read_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Python/exemploscsv/GSPC.csv')
+print(df.head()) # imprimir o csv
+#          Date   Open   High    Low  Close  Adj Close   Volume
+# 0  1950-01-03  16.66  16.66  16.66  16.66      16.66  1260000
+# 1  1950-01-04  16.85  16.85  16.85  16.85      16.85  1890000
+# 2  1950-01-05  16.93  16.93  16.93  16.93      16.93  2550000
+# 3  1950-01-06  16.98  16.98  16.98  16.98      16.98  2010000
+# 4  1950-01-09  17.08  17.08  17.08  17.08      17.08  2520000
+
+df = df.drop('Date', axis = 1) # deletar a primeira coluna de Data. que náo será utulizada
+print(df.head())
+#     Open   High    Low  Close  Adj Close   Volume
+# 0  16.66  16.66  16.66  16.66      16.66  1260000
+# 1  16.85  16.85  16.85  16.85      16.85  1890000
+# 2  16.93  16.93  16.93  16.93      16.93  2550000
+# 3  16.98  16.98  16.98  16.98      16.98  2010000
+# 4  17.08  17.08  17.08  17.08      17.08  2520000
+
+print(df[-2::]) # vai para o final dos dados
+#               Open         High  ...    Adj Close      Volume
+# 17216  2748.459961  2752.610107  ...  2748.800049  3517790000
+# 17217  2753.250000  2772.389893  ...  2772.350098  3651640000
+
+# vamos salvar essa 17217 em outra base de dados
+amanha = df[-1::] # vai cumprir apenas a ultima linha da base df, e colocou na variavel amanha
+print(amanha)
+#          Open         High          Low        Close    Adj Close      Volume
+# 17217  2753.25  2772.389893  2748.459961  2772.350098  2772.350098  3651640000
+
+base = df.drop(df[-1::].index, axis = 0) # exclui a 17217 da lista geral, temos essa lista apenas na variavel amanha.
+print(base.tail())
+#              Open         High  ...    Adj Close      Volume
+# 17212  2702.429932  2729.340088  ...  2724.010010  3561050000
+# 17213  2720.979980  2722.500000  ...  2705.270020  4235370000
+# 17214  2718.699951  2736.929932  ...  2734.620117  3684130000
+# 17215  2741.669922  2749.159912  ...  2746.870117  3376510000
+# 17216  2748.459961  2752.610107  ...  2748.800049  3517790000
+
+# fechamento de hj foi 2748.800049 queremos saber se amanha será abaixo ou acima desse valor
+base['target'] = base['Close'][1:len(base)].reset_index(drop=True) # nova variavel base, nova coluna target, vamos
+# salvar nesse coluna o conteudo da coluna close, indicamos que nao iremos comecar no indice 0, queremos comecar
+# com o indixe 1, depois resetamos o indice.
+print(base.tail)
+# <bound method NDFrame.tail of               Open         High  ...      Volume       target
+# 0        16.660000    16.660000  ...     1260000    16.850000
+# 1        16.850000    16.850000  ...     1890000    16.930000
+# 2        16.930000    16.930000  ...     2550000    16.980000
+# 3        16.980000    16.980000  ...     2010000    17.080000
+# 4        17.080000    17.080000  ...     2520000    17.030001
+# ...            ...          ...  ...         ...          ...
+# 17212  2702.429932  2729.340088  ...  3561050000  2705.270020
+# 17213  2720.979980  2722.500000  ...  4235370000  2734.620117
+# 17214  2718.699951  2736.929932  ...  3684130000  2746.870117
+# 17215  2741.669922  2749.159912  ...  3376510000  2748.800049
+# 17216  2748.459961  2752.610107  ...  3517790000          NaN          (NaN = nao sabemos o fechamento de amanha)
+
+prev = base[-1::].drop('target', axis = 1) # coloca a 17216 na variavel prev
+print(prev)
+#               Open         High  ...    Adj Close      Volume
+# 17216  2748.459961  2752.610107  ...  2748.800049  3517790000
+
+treino = base.drop(base[-1::].index, axis = 0) # nao tem mais a linha 17216, pois ela esta na prev
+print(treino.tail())
+#               Open         High  ...      Volume       target
+# 17211  2705.110107  2710.669922  ...  3736890000  2724.010010
+# 17212  2702.429932  2729.340088  ...  3561050000  2705.270020
+# 17213  2720.979980  2722.500000  ...  4235370000  2734.620117
+# 17214  2718.699951  2736.929932  ...  3684130000  2746.870117
+# 17215  2741.669922  2749.159912  ...  3376510000  2748.800049
+
+# temos que mostrar na coluna target a classificacao de  0 ou 1
+treino.loc[treino['target'] > treino['Close'],'target']= 1  # todas as linhas onde o valor da variavel target for maior
+# que o valor da variavel close, quero que essa linha na variavel target receba o valor de 1
+print(treino.tail())
+#               Open         High  ...      Volume      target
+# 17211  2705.110107  2710.669922  ...  3736890000     1.00000
+# 17212  2702.429932  2729.340088  ...  3561050000  2705.27002
+# 17213  2720.979980  2722.500000  ...  4235370000     1.00000
+# 17214  2718.699951  2736.929932  ...  3684130000     1.00000
+# 17215  2741.669922  2749.159912  ...  3376510000     1.00000
+
+treino.loc[treino['target'] != 1, 'target'] = 0 # caso o valor da variavel target for diferente de 1 adicione o numero 0
+print(treino.tail())
+#               Open         High          Low  ...    Adj Close      Volume  target
+# 17211  2705.110107  2710.669922  2676.810059  ...  2689.860107  3736890000     1.0
+# 17212  2702.429932  2729.340088  2702.429932  ...  2724.010010  3561050000     0.0
+# 17213  2720.979980  2722.500000  2700.679932  ...  2705.270020  4235370000     1.0
+# 17214  2718.699951  2736.929932  2718.699951  ...  2734.620117  3684130000     1.0
+# 17215  2741.669922  2749.159912  2740.540039  ...  2746.870117  3376510000     1.0
+
+y = treino['target']
+x = treino.drop('target', axis=1)
+
+from sklearn.model_selection import train_test_split
+x_treino, x_teste, y_treino, y_teste = train_test_split(x, y, test_size=0.3) # 30% para teste e 70% para treino
+
+from sklearn.ensemble import ExtraTreesClassifier
+modelo = ExtraTreesClassifier()
+modelo.fit(x_treino, y_treino)
+
+resultado = modelo.score(x_teste, y_teste)
+print('Acurácia: ', resultado)
+# Acurácia:  0.5237173281703775 (52% resultado nao é bom, Acurácia ruim)
+
+# vamos continuar a aula, mesmo com esse resultado ruim
+
+print(prev)
+#               Open         High  ...    Adj Close      Volume
+# 17216  2748.459961  2752.610107  ...  2748.800049  3517790000
+
+print(modelo.predict(prev)) # pegar o modelo para fazer uma previsao
+# [1.]  siginifica que o valor de fechamento de amanha será maior que 2748
+
+prev['target'] = modelo.predict(prev) # salvando dentro da variavel prev na nova coluna target
+print(prev)
+#               Open         High         Low  ...    Adj Close      Volume  target
+# 17216  2748.459961  2752.610107  2739.51001  ...  2748.800049  3517790000     1.0
+
+print(amanha) # fechou acima que  2748
+#           Open         High          Low        Close    Adj Close      Volume
+# 17217  2753.25  2772.389893  2748.459961  2772.350098  2772.350098  3651640000
+
+print(base.tail()) # continuar fazendo o teste automatico com a entrada de novos dados, pode filtar a cada
+# 10 novos dados  ou 100 ext...
+#               Open         High  ...      Volume       target
+# 17212  2702.429932  2729.340088  ...  3561050000  2705.270020
+# 17213  2720.979980  2722.500000  ...  4235370000  2734.620117
+# 17214  2718.699951  2736.929932  ...  3684130000  2746.870117
+# 17215  2741.669922  2749.159912  ...  3376510000  2748.800049
+# 17216  2748.459961  2752.610107  ...  3517790000          NaN
+
+base = base.append(amanha, sort=True) # incluindo com a funcao append o dia de amanha na base de dados
+# inseriu o dia 17217
+print(base.tail())
+#          Adj Close        Close  ...      Volume       target
+# 17213  2705.270020  2705.270020  ...  4235370000  2734.620117
+# 17214  2734.620117  2734.620117  ...  3684130000  2746.870117
+# 17215  2746.870117  2746.870117  ...  3376510000  2748.800049
+# 17216  2748.800049  2748.800049  ...  3517790000          NaN
+# 17217  2772.350098  2772.350098  ...  3651640000          NaN
+
+# ================================== ficar de forma automatica====
+
+prev.to_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Python/exemploscsv/Prev.csv', index=False) # dessa
+# forma eu salvei essa unidade nesse diretorio com o nome de prev.csv
+
+amanha = df[-1::] # pegar a ultima linha da base df  e salvar na variavel amanha, e salvando dentro do prev.csv
+amanha.to_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Python/exemploscsv/Futuro.csv', index=False)
+
+base = df.drop(df[-1::].index, axis = 0)
+base.to_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Python/exemploscsv/Hoje.csv', index=False)
+# criei 3 arquivos csv, prev futuro e hoje
 
 
 
