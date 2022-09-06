@@ -481,9 +481,90 @@ print(dados.head())
 dados['idade'].fillna(dados['idade'].mean(), inplace=True)
 print(dados.head(100)) # esse valor  100 significa que quero verificar as primeiras 100 linhas
 
+
 # ========================================= código de Machine Learning ================================================
 
+import pandas as pd
 
+vinho = pd.read_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Python/exemploscsv/wineQualityReds.csv')  # náo
+# esqueca de no final o nome do vinho
+
+print(vinho.head())  # imprimir o cabeçalho
+print(vinho)  # imprimir tudo, veja que o Type esta Red ou White
+#    Unnamed: 0  fixed.acidity  volatile.acidity  ...  alcohol  quality  Type
+# 0           1            7.4              0.70  ...      9.4        5   Red
+# 1           2            7.8              0.88  ...      9.8        5   Red
+
+
+vinho['Type'] = vinho['Type'].replace('Red', 0)  # irei trasnformar o red em numero para que o python possa
+# contar ou seja transformando string em numero. subistitui red por numero 0
+vinho['Type'] = vinho['Type'].replace('White', 1)  # onde esta white subistitui pelo numero 1
+
+print(vinho['Type'])  # mostrando que foi mesmo modificado
+# 0       0    antes era Red
+# 1       0
+# 2       0
+
+
+print(vinho)  # imprimir tudo, veja que agora o Type esta 0 ou 1
+#       Unnamed: 0  fixed.acidity  volatile.acidity  ...  alcohol  quality  Type
+# 0              1            7.4             0.700  ...      9.4        5     0
+# 1              2            7.8             0.880  ...      9.8        5     0
+
+
+y = vinho['Type']  # colocando a coluna Type na variavel y
+x = vinho.drop('Type', axis=1)  # esta excluindo a coluna Type e salvando o resto na variavel x
+
+print(y)  # testando... apenas a coluna Type
+# 0       0    antes era Red
+# 1       0
+# 2       0
+
+print(x)  # o resto da lista sem a coluna Type
+#       Unnamed: 0  fixed.acidity  volatile.acidity  ...  sulphates  alcohol  quality
+# 0              1            7.4             0.700  ...       0.56      9.4        5
+# 1              2            7.8             0.880  ...       0.68      9.8        5
+# 2              3            7.8             0.760  ...       0.65      9.8        5
+
+
+# ====================== separando colunas de treino e de testes ====
+
+from sklearn.model_selection import train_test_split
+
+x_treino, x_teste, y_treino, y_teste = train_test_split(x, y, test_size=0.3)  # dados de, o teste size, mostra a
+# porcentagem que eu quero para treino nesse caso quero 30% das amostras
+
+print(y.shape)  # mostra qual o espaço amostral da coluna Type, usaremos 30% dela.
+# (1599,)
+
+# ====================== imortar o algoritmo machine learning ExtraTreesClassifier ====
+
+from sklearn.ensemble import ExtraTreesClassifier # trabalha com classificação
+modelo = ExtraTreesClassifier()  # chamar a funçao e salva na variavel modelo
+modelo.fit(x_treino, y_treino)  # vai aplicar nos dados com o fit, vai treinar os dados
+
+resultado = modelo.score(x_teste, y_teste) # score vai comprar tudo e passar para o algoritimo
+print('Acurácia:', resultado)
+# Acurácia: 1.0  =  100% dos dados ele acertou  / 0.99 = 99%
+
+print(y_teste[400:403]) # pegando tres amostras, nao treinadas
+# 1534    0
+# 310     0
+# 1558    0
+# Name: Type, dtype: int64
+
+print(x_teste[400:403]) # pegando tres amostras, nao treinadas
+#       Unnamed: 0  fixed.acidity  volatile.acidity  ...  sulphates  alcohol  quality
+# 1055        1056            8.2              0.64  ...       0.62      9.1        6
+# 235          236            7.2              0.63  ...       0.58      9.0        6
+# 294          295           13.3              0.34  ...       0.81      9.5        6
+
+previsaoes = modelo.predict(x_teste[400:403]) # mostra a previsao
+print(previsaoes)
+# [0 0 0]  mostrando a previsao das amostrar que escolhi.
+
+
+# ============================================== Prevendo dados diariamente com Machine Learning =======================
 
 
 
