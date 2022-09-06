@@ -480,3 +480,18 @@ print(dados.head())
 # podemos subistituir os faltantes pela media da propria coluna
 dados['idade'].fillna(dados['idade'].mean(), inplace=True)
 print(dados.head(100)) # esse valor  100 significa que quero verificar as primeiras 100 linhas
+
+# ========================================= código de Machine Learning ================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
