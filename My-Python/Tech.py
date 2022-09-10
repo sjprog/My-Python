@@ -768,6 +768,9 @@ prev.to_csv('C:/Users/EXCALIBUR-04/OneDrive/Documentos/GitHub/My-Python/My-Pytho
 
 # ========================= Inteligência Artificial para recomendar filmes com Power BI e Python =======================
 
+# ======================================= Desenvolvimento de softwares com Kivy =======================================
+
+# ================================================= Layouts ===========================================================
 
 
 
