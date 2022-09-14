@@ -606,3 +606,277 @@ print(6. / 3.)
 #
 # Isto é um problema? Sim, é. Acontece por vezes que é realmente necessária uma divisão que forneça um valor
 # inteiro, não um float.
+
+# Um sinal // (dupla barra) é um operador de divisão inteira. Difere do operador padrão / em dois detalhes:
+#
+# o seu resultado não tem a parte fracionada - está ausente (para inteiros), ou é sempre igual a zero (para floats);
+# isto significa que os resultados são sempre arredondados;
+# está em conformidade com a regra inteiro vs. float.
+# Execute o exemplo abaixo e veja os resultados:
+#
+print(6 // 3)
+print(6 // 3.)
+print(6. // 3)
+print(6. // 3.)
+# 2
+# 2.0
+# 2.0
+# 2.0
+#
+# Como se pode ver, a divisão inteiro por inteiro dá um resultado inteiro. Todos os outros casos produzem floats.
+#
+#
+# Vamos fazer alguns testes mais avançados.
+#
+# Veja o seguinte snippet:
+#
+print(6 // 4)
+print(6. // 4)
+# 1
+# 1.0
+#
+# Imagine que usámos / em vez de // - consegue prever os resultados?
+#
+# Sim, seria 1.5 em ambos os casos. Isso é claro.
+#
+# Mas que resultados devemos esperar com // divisão?
+#
+# Execute o código e veja por si mesmo.
+
+# O que obtemos são dois uns - um inteiro e um float.
+#
+# O resultado da divisão inteira é sempre arredondado para o valor inteiro mais próximo, que é inferior ao
+# resultado real (não arredondado).
+#
+# Isto é muito importante: o arredondamento vai sempre para o número inteiro menor.
+#
+#
+# Veja o código abaixo e tente prever os resultados mais uma vez:
+#
+print(-6 // 4)
+print(6. // -4)
+# -2
+# -2.0
+#
+# Nota: alguns dos valores são negativos. Isto irá obviamente afetar o resultado. Mas como?
+#
+# O resultado são dois dois negativos. O resultado real (não arredondado) é -1.5 em ambos os casos.
+# No entanto, os resultados são sujeitos a arredondamento. O arredondamento vai para o menor valor inteiro, e o
+# menor valor inteiro é -2, logo: -2 e -2.0.
+#
+# NOTA
+#
+# A divisão inteira também pode ser chamada floor division. Definitivamente, no futuro, deparar-se-á com este termo.
+
+
+# O próximo operador é bastante peculiar, visto não ter equivalente entre os operadores aritméticos tradicionais.
+#
+# A sua representação gráfica em Python é o sinal % (percentagem), o que pode parecer um pouco confuso.
+#
+# Tente pensar nisto como uma barra (operador de divisão) acompanhada por dois pequenos círculos engraçados.
+#
+# O resultado do operador é um remainder (resto) deixado após a divisão inteira.
+#
+# Por outras palavras, é o valor que sobrou depois de dividir um valor por outro para produzir um quociente inteiro.
+#
+# Nota: o operador às vezes é chamado modulo noutras linguagens de programação.
+#
+# Dê uma vista de olhos no snippet - tente prever o seu resultado e, em seguida, execute-o:
+#
+print(14 % 4)
+# 2
+#
+# Como pode ver, o resultado é dois. Esta é a razão:
+#
+# ==> 14 // 4 dá 3 → este é o quociente inteiro;
+# ==> 3 * 4 dá 12 → como resultado da multiplicação de quocientes e divisores;
+# ==> 14 - 12 dá 2 → este é o resto.
+#
+# Este exemplo é um pouco mais complicado:
+#
+print(12 % 4.5)
+# 3,0 - não 3 mas 3.0 (a regra ainda funciona: 12 // 4.5 dá 2.0; 2.0 * 4.5 dá 9.0; 12 - 9.0 dá 3.0)
+
+# Operadores: como não dividir
+# Como provavelmente sabe, === (a divisão por zero não funciona.) ===
+#
+# Não tente:
+#
+# ==> executar uma divisão por zero;
+# ==> executar uma divisão inteira por zero;
+# ==> encontrar um remainder de uma divisão por zero.
+
+
+# O operador de adição é o sinal + (mais), que está totalmente de acordo com os padrões matemáticos.
+#
+# Novamente, dê uma vista de olhos no snippet do programa em baixo:
+#
+print(-4 + 4)
+print(-4. + 8)
+# 0
+# 4.0
+#
+# O resultado não deve ser nada surpreendente. Execute o código para o verificar.
+#
+#
+# O operador de subtração, operadores unários e binários
+# O operador de subtração é obviamente o sinal - (menos), embora deva notar que este operador também tem outro
+# significado - ele pode alterar o sinal de um número.
+#
+# Esta é uma grande oportunidade para apresentar uma distinção muito importante entre operadores unários e binários.
+#
+# Em aplicações de subtração, o operador menos espera dois argumentos: o da esquerda (um minuendo em termos aritméticos)
+# e o da direita (um subtraendo).
+#
+# Por esta razão, o operador de subtração é considerado um dos operadores binários, assim como os operadores de
+# adição, multiplicação e divisão.
+#
+# Mas o operador menos pode ser usado de uma forma diferente (unária) - veja a última linha do snippet em baixo:
+#
+print(-4 - 4)
+print(4. - 8)
+print(-1.1)
+# -8
+# -4.0
+# -1.1
+#
+# A propósito: há também um operador + unário. Pode utilizá-lo assim:
+#
+print(+2)
+# 2
+#
+# O operador preserva o sinal de seu único argumento - o correto.
+#
+# Embora tal construção seja sintaticamente correta, a sua utilização não faz muito sentido, e seria difícil
+# encontrar uma boa razão para o fazer.
+
+
+# Os operadores e as suas prioridades
+
+# Até agora, temos tratado cada operador como se não tivesse qualquer ligação com os outros. Obviamente, uma
+# situação tão ideal e simples é uma raridade na programação real.
+#
+# Além disso, encontrará muito frequentemente mais do que um operador numa só expressão, e então esta presunção
+# já não é tão óbvia.
+#
+# Considere a seguinte expressão:
+#
+# 2 + 3 * 5
+#
+# Provavelmente lembra-se da escola que as multiplicações precedem as adições.
+#
+# Deve certamente lembrar-se que primeiro deve multiplicar 3 por 5 e, mantendo o 15 na sua memória, depois
+# adicioná-los a 2, obtendo assim o resultado de 17.
+#
+# O fenómeno que leva alguns operadores a agir antes de outros é conhecido como a hierarquia de prioridades.
+#
+# O Python define com precisão as prioridades de todos os operadores, e assume que os operadores de maior
+# (mais alta) prioridade realizam as suas operações antes dos operadores de menor prioridade.
+#
+# Portanto, se sabe que * tem uma prioridade maior do que +, o cálculo do resultado final deve ser óbvio.
+#
+#
+# Os operadores e as suas ligações
+# A ligação do operador determina a ordem dos cálculos efetuados por alguns operadores com igual prioridade,
+# colocados lado a lado numa só expressão.
+#
+# A maioria dos operadores de Python têm ligação do lado esquerdo, o que significa que o cálculo da expressão
+# é realizado da esquerda para a direita.
+#
+# Este exemplo simples mostrar-lhe-á como funciona. Veja:
+#
+print(9 % 6 % 2)
+#
+#
+# Há duas formas possíveis de avaliar esta expressão:
+#
+# ==> da esquerda para a direita: primeiro 9 % 6 dá 3e, em seguida, 3 % 2 dá 1;
+# ==> da direita para a esquerda: primeiro 6 % 2 dá 0e, em seguida, 9 % 0 causa um erro fatal.
+#
+# Execute o exemplo e veja o que obtém.
+#
+# O resultado deve ser 1. Este operador tem ligação do lado esquerdo. Mas há uma exceção interessante.
+
+# Repita a experiência, mas agora com exponenciação.
+#
+# Use este snippet de código:
+#
+print(2 ** 2 ** 3)
+# 256
+#
+# Os dois resultados possíveis são:
+#
+# ==> 2 ** 2 → 4; 4 ** 3 → 64
+# ==> 2 ** 3 → 8; 2 ** 8 → 256
+#
+# Execute o código. O que vê?
+#
+# O resultado mostra claramente que === (o operador de exponenciação utiliza a ligação do lado direito.) ===
+
+# Lista de prioridades
+# Uma vez que é novo nos operadores Python, não queremos apresentar neste momento a lista completa de prioridades
+# dos operadores.
+#
+# Em vez disso, vamos mostrar-lhe a sua forma truncada, e vamos expandi-la de forma consistente à medida que
+# introduzimos novos operadores.
+#
+# Veja a tabela abaixo:
+#
+
+Prioridade	       Operador
+1	               +, -	                       unário
+2	               **
+3	               *, /, //, %
+4	               +, -	                       binário
+
+
+# Operadores e parêntesis
+
+# Claro, é sempre permitido utilizar parêntesis, o que pode alterar a ordem natural de um cálculo.
+#
+# De acordo com as regras aritméticas, as subexpressões entre parêntesis são sempre calculadas em primeiro lugar.
+#
+# Pode-se usar tantos parêntesis quantos forem necessários, e são frequentemente usados para melhorar a
+# egibilidade de uma expressão, mesmo que não alterem a ordem das operações.
+#
+# Um exemplo de uma expressão com vários parêntesis é este:
+#
+print((5 * ((25 % 13) + 100) / (2 * 13)) // 2)
+# 10.0
+#
+# Tente calcular o valor que é impresso para a consola. Qual é o resultado da função print() ?
+
+#  ================================================== RESUMO ===========================================================
+
+# 1. Uma expressão é uma combinação de valores (ou variáveis, operadores, chamadas a funções - em breve aprenderá sobre
+#   elas) que avalia a um valor, por exemplo, 1 + 2.
+#
+# 2. Os operadores são símbolos especiais ou keywords capazes de operar sobre os valores e realizar operações
+#   (matemáticas), por exemplo, o * operador multiplica dois valores: x * y.
+#
+# 3. Operadores aritméticos em Python: + (adição), - (subtração), * (multiplicação), /
+#   (divisão clássica - devolve sempre um float), % (módulo - divide o operando esquerdo pelo operando direito e
+#   devolve o resto da operação, por exemplo, 5 % 2 = 1), ** (exponenciação - operando esquerdo elevado à potência do
+#   operando direito, por exemplo, 2 ** 3 = 2 * 2 * 2 = 8), // (divisão por piso/inteiro - devolve um número resultante
+#   da divisão, mas arredondado para baixo para o número inteiro mais próximo, por exemplo 3 // 2.0 = 1.0)
+#
+# 4. Um operador unário é um operador com apenas um operando, por exemplo, -1, ou +3.
+#
+# 5. Um operador binário é um operador com dois operandos, por exemplo, 4 + 5, ou 12 % 5.
+#
+# 6. Alguns operadores atuam antes de outros - a hierarquia de prioridades:
+# ==> unário + e - têm a prioridade mais alta
+# ==> depois: **, depois: *, /, e %e, depois, a prioridade mais baixa: binário + e -.
+
+# 7. Subexpressões entre parêntesis são sempre calculadas em primeiro lugar, por exemplo, 15 - 1 * (5 * (1 + 2)) = 0.
+#
+# 8. O operador de exponenciação utiliza ligação do lado direito, por exemplo 2 ** 2 ** 3 = 256.
+
+print((2 ** 4), (2 * 4.), (2 * 4))
+# 16 8.0 8
+
+print((-2 / 4), (2 / 4), (2 // 4), (-2 // 4))
+# -0.5 0.5 0 -1
+
+print((2 % -4), (2 % 4), (2 ** 3 ** 2))
+# -2 2 512
