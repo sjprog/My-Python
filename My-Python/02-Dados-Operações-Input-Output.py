@@ -880,3 +880,288 @@ print((-2 / 4), (2 / 4), (2 // 4), (-2 // 4))
 
 print((2 % -4), (2 % 4), (2 ** 3 ** 2))
 # -2 2 512
+
+
+#  ========================================================= INPUT =====================================================
+
+# Vamos agora apresentar-lhe uma função completamente nova, que parece ser um reflexo da boa e velha função print() .
+
+# Porquê? Bem, print() envia dados para a consola.
+
+# A nova função obtém dados dela.
+
+# print() não tem resultado utilizável. O significado da nova função é devolver um resultado muito utilizável.
+
+# A função é chamada input(). The name of the function says everything.
+
+# A tecla programável input() function is able to read data entered by the user and to return the same data to the
+# running program.
+
+# O programa pode manipular os dados, tornando o código genuinamente interativo.
+
+# Virtualmente todos os programas lêem e processam dados. Um programa que não recebe um input do utilizador é um
+# programa surdo.
+
+# Dê uma vista de olhos no nosso exemplo:
+
+print("Tell me anything...")
+anything = input()
+print("Hmm...", anything, "... Really?")
+
+
+# Isto mostra um caso muito simples de utilização da função input() .
+
+# Nota:
+
+# ===> O programa pede ao utilizador que introduza alguns dados da consola (muito provavelmente utilizando um teclado,
+#       embora também seja possível introduzir dados utilizando voz ou imagem);
+# ===> a função input() é invocada sem argumentos (esta é a forma mais simples de usar a função); a função irá mudar
+#       a consola para o modo de input; verá um cursor a piscar, e poderá introduzir algumas keystrokes, terminando com a
+#       tecla Enter; todos os dados introduzidos serão enviados para o seu programa através do resultado da função;
+# ===> nota: é necessário atribuir o resultado a uma variável; isto é crucial - a falta desta etapa fará com que os
+#       dados introduzidos se percam;
+# ===> então, utilizamos a função print() para fazer output dos dados que obtemos, com algumas observações adicionais.
+
+# A função input() pode fazer algo mais: pode incitar o utilizador sem qualquer ajuda de print().
+
+# Modificámos um pouco o nosso exemplo, olha para o código:
+
+# anything = input("Tell me anything...")
+# print("Hmm...", anything, "...Really?")
+
+# Nota:
+
+# a keyword input() é invocada com um argumento - é uma string contendo uma mensagem;
+# a mensagem será exibida na consola antes de ser dada ao utilizador a oportunidade de introduzir qualquer coisa;
+# input() fará então o seu trabalho.
+# Esta variante da invocação input() simplifica o código e torna-o mais claro.
+
+# Já o dissemos, mas deve ser afirmado uma vez mais sem ambiguidade: o resultado da função input() é uma string.
+
+# Uma string contendo todos os carateres que o utilizador introduz a partir do teclado. Não é um inteiro ou um float.
+
+# Isto significa que não deve usá-la como um argumento de qualquer operação aritmética, por exemplo, não pode usar
+# estes dados para os elevar ao quadrado, dividi-los por qualquer coisa, ou dividir qualquer coisa por eles.
+
+anything = input("Enter a number: ")
+something = anything ** 2.0
+print(anything, "to the power of 2 is", something)
+
+#  ====================================================
+
+anything = float(input("Enter a number: "))
+something = anything ** 2.0
+print(anything, "to the power of 2 is", something)
+
+# Concatenação
+
+
+# O sinal + (mais), quando aplicado a duas strings, torna-se um operador de concatenação:
+
+string + string
+
+# Simplesmente concatena (cola) duas strings numa. Claro que, tal como o seu irmão aritmético, pode ser usado
+# mais de uma vez numa expressão, e em tal contexto comporta-se de acordo com a ligação do lado esquerdo.
+
+# Em contraste com o seu irmão aritmético, o operador da concatenação não é comutativo, ou seja "ab" + "ba" não
+# é o mesmo que "ba" + "ab".
+
+# Não se esqueça - se quiser que o sinal + seja um concatenador, não um adicionador, deve assegurar-se de que
+# ambos os seus argumentos são strings.
+
+# Não se podem misturar tipos aqui.
+
+# Este programa simples mostra o sinal + na sua segunda utilização:
+
+fnam = input("May I have your first name, please? ")
+lnam = input("May I have your last name, please? ")
+print("Thank you.")
+print("\nYour name is " + fnam + " " + lnam + ".")
+# May I have your first name, please? SIDNEY
+# May I have your last name, please? JUNIO
+# Thank you.
+
+# Your name is SIDNEY JUNIO.
+
+
+# Replicação
+
+
+# O sinal * (asterisco), quando aplicado a uma string e número (ou um número e string, visto permanecer comutativo
+# nesta posição) torna-se um operador de replicação:
+
+string * number
+number * string
+
+# Replica a string o mesmo número de vezes especificado pelo número.
+
+# Por exemplo:
+
+"James" * 3 dá "JamesJamesJames"
+3 * "an" dá "ananan"
+5 * "2" (ou "2" * 5) dá "22222" (não 10!)
+
+# LEMBRE-SE
+
+# Um número menor ou igual a zero produz uma string vazia.
+
+# Este programa simples "desenha" um retângulo, fazendo uso de um antigo operador (+) num novo papel:
+
+print("+" + 10 * "-" + "+")
+print(("|" + " " * 10 + "|\n") * 5, end="")
+print("+" + 10 * "-" + "+")
+# +----------+
+# |          |
+# |          |
+# |          |
+# |          |
+# |          |
+# +----------+
+
+# Note a forma como utilizámos os parêntesis na segunda linha do código.
+
+# Tente praticar para criar outras formas ou a sua própria obra de arte!
+
+# Nota: usando + para concatenar strings permite construir o output de uma forma mais precisa do que com uma função
+# pura print() , mesmo que enriquecida com os end= e sep= argumentos de keyword.
+
+# Execute o código e veja se o output corresponde às suas previsões.
+
+
+# Conversão de tipo: str()
+
+
+# Já sabe como utilizar as funções int() e float() para converter uma string num número.
+
+# Este tipo de conversão não é uma rua de sentido único. Também se pode converter um número numa string,
+# o que é muito mais fácil e seguro - esta operação é sempre possível.
+
+# Uma função capaz de o fazer chama-se str():
+
+str(number)
+
+# Para ser honesto, pode fazer muito mais do que apenas transformar números em strings, mas isso pode ficar para mais tarde.
+
+# O “triângulo de ângulo retângulo” novamente
+# Aqui está o nosso programa “triângulo de ângulo retângulo” novamente:
+
+leg_a = float(input("Input first leg length: "))
+leg_b = float(input("Input second leg length: "))
+print("Hypotenuse length is " + str((leg_a**2 + leg_b**2) ** .5))
+# Input first leg length: 1.80
+# Input second leg length: 1.54
+# Hypotenuse length is 2.3688815926508444
+
+# Modificámo-lo um pouco para lhe mostrar como a função str() funciona. Graças a isso, podemos passar
+# todo o resultado para a função print() como uma string, esquecendo as vírgulas.
+
+# Deu alguns passos sérios no seu caminho para a programação em Python.
+
+# Já conhece os tipos de dados básicos, e um conjunto de operadores fundamentais. Sabe como organizar o
+# output e como obter dados do utilizador. Estas são bases muito fortes para o Módulo 3. Mas antes de passarmos ao
+# módulo seguinte, vamos fazer alguns laboratórios, e recapitular tudo o que aprendeu nesta secção.
+
+a = float(input("Enter first value: "))
+b = float(input("Enter second value: "))
+print("Addition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)
+print("\nThat's all, folks!")
+# Enter first value: 50
+# Enter second value: 30
+# Addition: 80.0
+# Subtraction: 20.0
+# Multiplication: 1500.0
+# Division: 1.6666666666666667
+#
+# That's all, folks!
+
+# =======================================================
+
+x = float(input("Enter value for x: "))
+y = 1./(x + 1./(x + 1./(x + 1./x)))
+print("y =", y)
+# Enter value for x: 2
+# y = 0.4137931034482759
+
+# =======================================================
+
+# A sua tarefa é preparar um código simples capaz de avaliar o tempo final de um período de tempo,
+# dado como um número de minutos (pode ser arbitrariamente grande). O tempo inicial é dado como um par de horas (0.. 23) e minutos (0.. 59). O resultado tem de ser impresso para a consola.
+
+# Por exemplo, se um evento começar às 12:17 e durar 59 minutos, ele terminará às 13:16.
+
+# Não se preocupe com quaisquer imperfeições no seu código - não faz mal se aceitar um tempo inválido - o
+# mais importante é que o código produza resultados válidos para dados de input válidos.
+
+# Teste o seu código com cuidado. Dica: utilizar o operador % pode ser a chave para o sucesso.
+
+hour = int(input("Starting time (hours): "))
+mins = int(input("Starting time (minutes): "))
+dura = int(input("Event duration (minutes): "))
+mins = mins + dura # find a total of all minutes
+hour = hour + mins // 60 # find a number of hours hidden in minutes and update the hour
+mins = mins % 60 # correct minutes to fall in the (0..59) range
+hour = hour % 24 # correct hours to fall in the (0..23) range
+print(hour, ":", mins, sep='')
+# Starting time (hours): 2
+# Starting time (minutes): 30
+# Event duration (minutes): 40
+# 3:10
+
+# ======================================================= RESUMO ======================================================
+
+# 1. A função print() envia dados para a consola, enquanto a função input() obtém dados da consola.
+
+# 2. O método input() vem com um parâmetro opcional: a string prompt. Permite-lhe escrever uma mensagem antes do
+# input do utilizador, por exemplo
+
+name = input("Enter your name: ")
+print("Hello, " + name + ". Nice to meet you!")
+
+# 3. Quando a função input() é chamada, o fluxo do programa é interrompido, o símbolo de prompt continua a
+# piscar (pede ao utilizador para tomar medidas quando a consola é mudada para o modo de input) até o utilizador
+# ter introduzido um input e/ou premido a tecla Enter.
+
+# NOTA
+
+# Pode testar a funcionalidade da função input() em todo o seu scope localmente na sua máquina. Por razões de
+#  otimização de recursos, limitámos o tempo máximo de execução do programa no Edube a alguns segundos. Vá à Sandbox,
+#  copie-cole o snippet acima, execute o programa, e não faça nada - espere apenas alguns segundos para ver o
+#  que acontece. O seu programa deve ser interrompido automaticamente após um breve momento. Agora abra o IDLE,
+#  e execute lá o mesmo programa - consegue ver a diferença?
+
+# Dica: a característica acima mencionada da função input() pode ser utilizada para solicitar o utilizador a
+# terminar um programa. Veja o código em baixo:
+
+name = input("Enter your name: ")
+print("Hello, " + name + ". Nice to meet you!")
+
+print("\nPress Enter to end the program.")
+input()
+print("THE END.")
+
+# 3. O resultado da função input() é uma string. Podem adicionar-se strings umas às outras usando a concatenação
+# (+) operador. Verifique este código:
+
+num_1 = input("Enter the first number: ") # Enter 12
+num_2 = input("Enter the second number: ") # Enter 21
+print(num_1 + num_2) # the program returns 1221
+
+# 4. Também pode multiplicar (* - replicação) strings, por exemplo:
+
+my_input = input("Enter something: ") # Example input: hello
+print(my_input * 3) # Expected output: hellohellohello
+
+# =======================================================
+
+x = int(input("Enter a number: ")) # The user enters 2
+print(x * "5")
+# 55
+
+# =======================================================
+
+x = input("Enter a number: ") # The user enters 2
+print(type(x))
+# <class 'str'>

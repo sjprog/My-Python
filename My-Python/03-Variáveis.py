@@ -402,3 +402,28 @@ print(a)
 # 2 * b = 6
 # a = 6 → 6 / 6 = 1.0
 # ==============================================
+
+
+
+# ============================================== COMENTARIOS ===========================================================
+
+# Pode querer colocar algumas palavras dirigidas não ao Python mas aos humanos, normalmente para explicar a outros
+# leitores do código como funcionam os truques utilizados no código, ou os significados das variáveis, e para manter
+# a informação armazenada sobre quem é o autor e quando o programa foi escrito.
+
+# Uma observação inserida no programa, que é omitida em runtime, é chamada um comentário.
+
+# Como se deixa este tipo de comentário no source code? Tem de ser feito de uma forma que não force o Python a
+# interpretá-lo como parte do código.
+
+# Sempre que o Python encontra um comentário no seu programa, o comentário é completamente transparente para ele -
+# do ponto de vista de Python, este é apenas um espaço (independentemente da duração do comentário real).
+
+# Em Python, um comentário é um pedaço de texto que começa com um sinal # (cardinal, ou hash em inglês) e se
+# estende até ao final da linha.
+
+# Se quiser um comentário que abranja várias linhas, tem de colocar um hash à frente de todas elas.
+
+# ==========>     Se quiser comentar ou descomentar rapidamente várias linhas de código, selecione a(s) linha(s) que deseja
+# modificar e use o seguinte atalho de teclado: CTRL + / (Windows) ou CMD + / (Mac OS). É um truque muito útil,
+# não é? Experimente este código na Sandbox. <=============================
