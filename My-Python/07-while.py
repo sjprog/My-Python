@@ -1,4 +1,4 @@
-# ====================================================== while =========================================================
+# ====================================================== while (enquanto) =========================================================
 
 # =========================================== Fazer loop ao seu código com while
 
@@ -225,4 +225,27 @@ print(secret_number, "Well done, muggle! You are free now.")
 # 777 Well done, muggle! You are free now.
 
 # =========================================================
+
+# ================================================================= Os loops while e o ramo else .
+
+# Ambos os loops, while e for, têm uma característica interessante (e raramente usada).
+# Vamos mostrar-lhe como funciona - tente julgar por si próprio se é utilizável e se pode viver sem ela ou não.
+# Por outras palavras, tente convencer-se se a característica é valiosa e útil, ou se é apenas açúcar sintático.
+# Veja o snippet no editor. Há algo estranho no final - a keyword else .
+# Como pode ter suspeitado, os loops podem ter o ramo else também, como if.
+# O ramo do loop else é sempre executado uma vez, independentemente de o loop ter entrado no seu corpo ou não.
+# Consegue adivinhar o output? Execute o programa para verificar se estava certo.
+# Modifique um pouco o anippet para que o loop não tenha hipótese de executar o seu corpo nem mesmo uma vez:
+#
+i = 5
+while i < 5:
+    print(i)
+    i += 1
+else:
+    print("else:", i)
+# 1
+# 2
+# 3
+# 4
+# else: 5
 
