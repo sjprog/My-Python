@@ -316,3 +316,330 @@ if number > largest_number:
 # Em segundo lugar, assumimos que o nosso algoritmo não saberá antecipadamente quantos números serão entregues
 # ao programa. Esperamos que o utilizador introduza quantos números quiser - o algoritmo funcionará bem com cem
 # e com mil números. Como é que fazemos isso?
+
+# Fazemos um acordo com o utilizador: quando o valor -1 é introduzido, será um sinal de que não há mais dados e
+# que o programa deve terminar o seu trabalho.
+
+# Caso contrário, se o valor introduzido não for igual a -1, o programa irá ler outro número, e assim por diante.
+
+# O truque baseia-se no pressuposto de que qualquer parte do código pode ser executada mais do que uma vez -
+# precisamente, tantas vezes quantas forem necessárias.
+
+# A execução de uma determinada parte do código mais do que uma vez é chamada um loop. O significado deste
+# termo é provavelmente óbvio para si.
+
+# Linhas 02 através 08 fazem um loop. Passaremos por eles tantas vezes quantas forem necessárias para rever todos
+# os valores introduzidos.
+
+# Pode usar uma estrutura semelhante num programa escrito em Python? Sim, pode.
+
+# Informação Extra
+
+# O Python vem muitas vezes com muitas funções incorporadas que farão o trabalho por si. Por exemplo,
+# para encontrar o maior número de todos, pode usar uma função integrada Python chamada max(). Pode utilizá-la com
+# múltiplos argumentos. Analise o código abaixo:
+
+# Read three numbers.
+number1 = int(input("Enter the first number: "))
+number2 = int(input("Enter the second number: "))
+number3 = int(input("Enter the third number: "))
+
+# Check which one of the numbers is the greatest
+# and pass it to the largest_number variable.
+
+largest_number = max(number1, number2, number3)
+
+# Print the result.
+print("The largest number is:", largest_number)
+
+# Da mesma forma, pode usar a função min() para devolver o menor número. Pode reconstruir o código acima e fazer
+# experiências com ele na Sandbox.
+
+# Vamos falar sobre estas (e muitas outras) funções em breve. Por enquanto, o nosso foco será colocado na execução
+# condicional e nos loops para lhe permitir ganhar mais confiança na programação e ensinar-lhe as competências que
+# lhe permitirão compreender e aplicar plenamente os dois conceitos no seu código. Portanto, por agora, não vamos
+# por atalhos.
+
+# Da mesma forma, pode usar a função min() para devolver o menor número.
+
+# =====================================================
+
+# Escreve um programa que utilize o conceito de execução condicional, toma uma string como entrada, e:
+
+#       imprime a frase "Yes - Spathiphyllum is the best plant ever!" para o ecrã, se a cadeia de caracteres inseridos
+#           é "Spathiphyllum" (upper-case)
+#       Impressões "No, I want a big Spathiphyllum!" se a cadeia de caracteres inseridos é "spathiphyllum" (lower-case)
+#       Impressões "Spathiphyllum! Not [input]!" caso contrário. Nota: [input] é a string tomada como input.
+
+name = input("Enter flower name: ")
+
+if name == "Spathiphyllum":
+    print("Yes - Spathiphyllum is the best plant ever!")
+elif name == "spathiphyllum":
+    print("No, I want a big Spathiphyllum!")
+else:
+    print("Spathiphyllum! Not", name + "!")
+# Enter flower name: Sidney
+# Spathiphyllum! Not Sidney!
+
+# =====================================================
+
+# A sua tarefa é escrever uma calculadora de impostos.
+
+# ===> Deve aceitar um valor de floating-point: o rendimento.
+# ===> A seguir, deve imprimir o imposto calculado, arredondado a thalers completos. Há uma função chamada round()
+# que lhe fará o arredondamento por si - encontrá-la-á no código esqueleto no editor.
+# Nota: este país feliz nunca devolve dinheiro aos seus cidadãos. Se o imposto calculado for inferior a zero,
+# significa apenas que não há qualquer imposto (o imposto é igual a zero). Tenha isto em consideração durante
+# os seus cálculos.
+
+# Veja o código no editor - lê apenas um valor de input e faz output de um resultado, pelo que necessita de o
+# completar com alguns cálculos inteligentes.
+
+income = float(input("Enter the annual income: "))
+
+if income < 85528:
+	tax = income * 0.18 - 556.02
+else:
+	tax = (income - 85528) * 0.32 + 14839.02
+
+if tax < 0.0:
+	tax = 0.0
+
+tax = round(tax, 0)
+print("The tax is:", tax, "thalers")
+# Enter the annual income: 10000
+# The tax is: 1244.0 thalers
+
+# =====================================================
+
+# Como certamente sabe, devido a algumas razões astronómicas, os anos podem ser bissextos ou comuns.
+# Os primeiros têm 366 dias de duração, enquanto os segundos têm 365 dias de duração.
+
+# Desde a introdução do calendário gregoriano (em 1582), a seguinte regra é utilizada para determinar o tipo de ano:
+
+# ==> se o número do ano não for divisível por quatro, é um ano comum;
+# ==> caso contrário, se o número do ano não for divisível por 100, é um ano bissexto;
+# ==> caso contrário, se o número do ano não for divisível por 400, é um ano comum;
+# ==> caso contrário, é um ano bissexto.
+
+# Veja o código no editor - lê apenas um número de ano, e precisa de ser completado com as instruções de implementação
+# do teste que acabámos de descrever.
+
+# O código deve fazer output de uma de duas mensagens possíveis, que são Leap year ou Common year, dependendo do
+# valor inserido.
+
+# Seria bom verificar se o ano introduzido cai na era Gregoriana, e faz output de um aviso caso contrário: Not
+# within the Gregorian calendar period. Dica: use os operadores != e % .
+
+year = int(input("Enter a year: "))
+
+if year < 1582:
+	print("Not within the Gregorian calendar period")
+else:
+	if year % 4 != 0:
+		print("Common year")
+	elif year % 100 != 0:
+		print("Leap year")
+	elif year % 400 != 0:
+		print("Common year")
+	else:
+		print("Leap year")
+# Enter a year: 2000
+# Leap year
+
+# ===================================================== Resumo =========================================================
+
+# 1. Os operadores de comparação (ou os chamados relacionais) são usados para comparar valores. A tabela abaixo
+# ilustra como os operadores de comparação funcionam, assumindo que x = 0, y = 1, e z = 0:
+
+Operador	                                    Descrição	                                          Exemplo
+   ==	         retorna se os valores dos operandos forem iguais, eFalse caso contrário
+                                                                                                       x == y  # False
+                                                                                                       x == z  # True
+
+   !=	       retorna Truese os valores dos operandos não forem iguais, eFalse caso contrário
+                                                                                                       x != y  # True
+                                                                                                       x != z  # False
+
+   >	                 Truese o valor do operando esquerdo for maior que o
+                    valor do operando direito, eFalse caso contrário
+                                                                                                       x > y  # False
+                                                                                                       y > z  # True
+
+   <	                 Truese o valor do operando esquerdo for inferior ao
+                    valor do operando direito, eFalse caso contrário
+                                                                                                       x < y  # True
+                                                                                                       y < z  # False
+
+   ≥	                 Truese o valor do operando esquerdo for maior ou
+                    igual ao valor do operando direito, eFalse caso contrário
+                                                                                                       x >= y  # False
+                                                                                                       x >= z  # True
+                                                                                                       y >= z  # True
+
+   ≤	                 Truese o valor do operando esquerdo for inferior
+                    ou igual ao valor do operando direito, eFalse caso contrário
+                                                                                                       x <= y  # True
+                                                                                                       x <= z  # True
+                                                                                                       y <= z  # False
+
+# 2. Quando quiser executar algum código apenas se uma determinada condição for cumprida, pode usar uma declaração
+# condicional:
+
+# ===> uma únicaif declaração, por exemplo:
+
+x = 10
+if x == 10: # condition
+    print("x is equal to 10")  # Executed if the condition is True.
+
+# ===> uma série de if declarações, por exemplo:
+
+x = 10
+if x > 5: # condition one
+    print("x is greater than 5")  # Executed if condition one is True.
+if x < 10: # condition two
+    print("x is less than 10")  # Executed if condition two is True.
+if x == 10: # condition three
+    print("x is equal to 10")  # Executed if condition three is True.
+
+#  Cada if declaração é testada separadamente.
+
+# ===> uma if-elsedeclaração, por exemplo:
+
+x = 10
+if x < 10:  # Condition
+    print("x is less than 10")  # Executed if the condition is True.
+else:
+    print("x is greater than or equal to 10")  # Executed if the condition is False.
+
+# ===> uma série de if declarações seguidas por um else, por exemplo:
+
+x = 10
+
+if x > 5:  # True
+    print("x > 5")
+if x > 8:  # True
+     print("x > 8")
+
+if x > 10:  # False
+    print("x > 10")
+else:
+    print("else will be executed")
+
+# Cada if é testado separadamente. O corpo de else é executado se o último if for False.
+
+# ===> A if-elif-elsedeclaração, por exemplo:
+
+x = 10
+if x == 10:  # True
+    print("x == 10")
+if x > 15:  # False
+    print("x > 15")
+elif x > 10:  # False
+    print("x > 10")
+elif x > 5:  # True
+    print("x > 5")
+else:
+    print("else will not be executed")
+
+# Se a condição if for False, o programa verifica as condições dos elif blocos subsequentes - o
+# primeiro elif bloco que True é executado. Se todas as condições forem False, o else bloco será executado.
+
+# ===> Declarações condicionais nested, por exemplo:
+
+x = 10
+if x > 5:  # True
+    if x == 6:  # False
+        print("nested: x == 6")
+    elif x == 10:  # True
+        print("nested: x == 10")
+    else:
+        print("nested: else")
+else:
+    print("else")
+
+# =====================================================
+
+x = 5
+y = 10
+z = 8
+
+print(x > y)
+print(y > z)
+# False
+# True
+
+# =====================================================
+
+x, y, z = 5, 10, 8
+
+print(x > z)
+print((y - 5) == x)
+# False
+# True
+
+# =====================================================
+
+x, y, z = 5, 10, 8
+x, y, z = z, y, x
+
+print(x > z)
+print((y - 5) == x)
+# True
+# False
+
+# =====================================================
+
+x = 10
+
+if x == 10:
+    print(x == 10)
+if x > 5:
+    print(x > 5)
+if x < 10:
+    print(x < 10)
+else:
+    print("else")
+# True
+# True
+# else
+
+# =====================================================
+
+x = "1"
+
+if x == 1:
+    print("one")
+elif x == "1":
+    if int(x) > 1:
+        print("two")
+    elif int(x) < 1:
+        print("three")
+    else:
+        print("four")
+if int(x) == 1:
+    print("five")
+else:
+    print("six")
+# four
+# five
+
+# =====================================================
+
+x = 1
+y = 1.0
+z = "1"
+
+if x == y:
+    print("one")
+if y == int(z):
+    print("two")
+elif x == y:
+    print("three")
+else:
+    print("four")
+# one
+# two
+
+# =====================================================
