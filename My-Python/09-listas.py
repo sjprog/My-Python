@@ -874,5 +874,765 @@ print(lst)
 
 # ===================================================================
 
+# ========================================================================A vida interna das listas
+
+# Agora queremos mostrar-lhe uma característica importante, e muito surpreendente, das listas, que as distingue
+# fortemente das variáveis comuns.
+
+# Queremos que o memorize - pode afetar os seus programas futuros, e causar graves problemas se esquecido ou
+# negligenciado.
+
+# Veja o snippet no editor.
+
+# O programa:
+
+# ===> cria uma lista de um elemento chamada list_1;
+# ===> atribui-o a uma nova lista chamada list_2;
+# ===> altera o único elemento de list_1;
+# ===> imprime list_2.
+
+# A parte surpreendente é o facto de que o programa fará o output: [2], não [1], que parece ser a solução óbvia.
+
+# As listas (e muitas outras entidades complexas de Python) são armazenadas de formas diferentes das variáveis
+# ordinárias (escalares).
+
+# Pode-se dizer que:
+
+# ===> o nome de uma variável ordinária é o nome do seu conteúdo;
+# ===> o nome de uma lista é o nome de um local de memória onde a lista é armazenada.
+
+# Leia estas duas linhas mais uma vez - a diferença é essencial para compreender aquilo de que vamos falar a seguir.
+
+# A atribuição: list_2 = list_1 copia o nome do array, não o seu conteúdo. Com efeito, os dois nomes
+# (list_1 e list_2) identificam o mesmo local na memória do computador. Modificar um deles afeta o outro, e vice-versa.
+
+list_1 = [1]
+list_2 = list_1
+list_1[0] = 2
+print(list_2)
+# [2]
+
+# =============================================================================== Slices poderosas
+
+# Felizmente, a solução está ao seu alcance - o seu nome é slice.
+# Uma slice é um elemento da sintaxe Python que lhe permite fazer uma cópia completamente nova de uma lista ou
+# partes de uma lista.
+
+# Na verdade, a slice copia o conteúdo da lista, não o seu nome.
+
+# Isto é exatamente o que necessita. Dê uma vista de olhos no snippet em baixo:
+
+list_1 = [1]
+list_2 = list_1[:]
+list_1[0] = 2
+print(list_2)
+
+# O seu output é [1].
+
+# Esta parte inconspícua do código descrito como [:] é capaz de produzir uma lista completamente nova.
+
+# Uma das formas mais gerais da slice tem o seguinte aspeto:
+
+my_list[start:end]
+
+# Como pode ver, assemelha-se à indexação, mas os dois pontos no interior fazem uma grande diferença.
+#
+# Uma slice desta forma faz uma nova lista (alvo), retirando elementos da source list - os elementos dos índices
+# desde o início até end - 1.
+
+# Nota: não para end mas para end - 1. Um elemento com um índice igual a end é o primeiro elemento que não
+# participa no slicing.
+
+# É possível utilizar valores negativos tanto para o início como para o fim (tal como na indexação).
+
+# Veja o snippet:
+
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[1:3]
+print(new_list)
+
+# A new_list lista terá end - start (3 - 1 = 2) elementos - aqueles com índices iguais a 1 e 2 (mas não 3).
+
+# O output do snippet é: [8, 6]
+
+# Copying the entire list.
+list_1 = [1]
+list_2 = list_1[:]
+list_1[0] = 2
+print(list_2)
+
+# Copying some part of the list.
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[1:3]
+print(new_list)
+# [1]
+# [8, 6]
+
+# =================================================================== Slices - índices negativos
+
+# Veja o snippet em baixo:
+
+my_list[start:end]
+
+# Para repetir:
+
+# ===> start é o index do primeiro elemento incluído no slice;
+# ===> end é o index do primeiro elemento não incluído no slice.
+
+# É assim que os índices negativos funcionam com o slice:
+
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[1:-1]
+print(new_list)
+# [8, 6, 4]
 
 
+# Se o start especifica um elemento que se encontra mais longe do que o descrito pelo end
+# (do ponto de vista inicial da lista), o slice estará vazio:
+
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[-1:1]
+print(new_list)
+# []
+
+# ======================================================================== Slices: continuação
+
+# Se omitir o start no seu slice, assume-se que pretende obter um slice começando pelo elemento com index 0.
+
+# Por outras palavras, o slice desta forma:
+
+my_list[:end]
+
+# é um equivalente mais compacto de:
+
+my_list[0:end]
+
+# Veja o snippet em baixo:
+
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[:3]
+print(new_list)
+
+# É por isso que o seu output é: [10, 8, 6].
+
+# Da mesma forma, se omitir o end no seu slice, presume-se que deseja que o slice termine no elemento com o
+# index len(my_list).
+
+# Por outras palavras, o slice desta forma:
+
+my_list[start:]
+
+# é um equivalente mais compacto de:
+
+my_list[start:len(my_list)]
+
+# Veja o snippet seguinte:
+
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[3:]
+print(new_list)
+# [4, 2]
+
+# ========================================================================= Slices: continuação
+
+# Como já dissemos anteriormente, omitindo ambos start e end faz uma cópia de toda a lista:
+
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[:]
+print(new_list)
+#[10, 8, 6, 4, 2].
+
+# A instrução anteriormente descrita del é capaz de apagar mais do que apenas um elemento de uma lista
+# ao mesmo tempo - também pode apagar slices:
+
+my_list = [10, 8, 6, 4, 2]
+del my_list[1:3]
+print(my_list)
+
+# Nota: neste caso, o slice não produz nenhuma lista nova!
+
+# O output do snippet é: [10, 4, 2].
+
+# A eliminação de todos os elementos de uma só vez também é possível:
+
+my_list = [10, 8, 6, 4, 2]
+del my_list[:]
+print(my_list)
+#  [].
+
+# A remoção do slice do código muda dramaticamente o seu significado.
+
+# Veja:
+
+my_list = [10, 8, 6, 4, 2]
+del my_list
+print(my_list)
+
+# A instrução del eliminará a lista em si, não o seu conteúdo.
+
+# A print() invocação da função a partir da última linha do código causará então um erro de runtime.
+
+# ============================================================================Os loops in e not in operadores
+
+# O Python oferece dois operadores muito poderosos, capazes de olhar através da lista a fim de verificar se um
+# valor específico está ou não armazenado dentro da lista
+
+# Estes operadores são:
+
+elem in my_list
+elem not in my_list
+
+# O primeiro deles (in) verifica se um dado elemento (o seu argumento da esquerda) está atualmente armazenado
+# algures dentro da lista (o argumento da direita) - o operador devolve True neste caso.
+
+# O segundo (not in) verifica se um dado elemento (o seu argumento da esquerda) está ausente numa lista - o operador
+# devolve True neste caso.
+
+my_list = [0, 3, 12, 8, 2]
+
+print(5 in my_list)
+print(5 not in my_list)
+print(12 in my_list)
+# False
+# True
+# True
+
+# ======================================================================= Listas - alguns programas simples
+
+# Agora queremos mostrar-lhe alguns programas simples que utilizam listas.
+
+# O primeiro deles tenta encontrar o maior valor na lista. Veja o código no editor.
+#
+# O conceito é bastante simples - assumimos temporariamente que o primeiro elemento é o maior, e verificamos a
+# hipótese contra todos os restantes elementos da lista.
+
+# O código fará o output 17 (como esperado).
+
+# O código pode ser reescrito para fazer uso da forma recentemente introduzida do for :
+
+my_list = [17, 3, 11, 5, 1, 9, 7, 15, 13]
+largest = my_list[0]
+
+for i in my_list:
+    if i > largest:
+     largest = i
+
+print(largest)
+
+# O programa acima realiza uma comparação desnecessária, quando o primeiro elemento é comparado consigo
+# mesmo, mas isto não é de todo um problema.
+
+# O código fará o output 17, também (nada invulgar).
+
+# Se precisar de poupar energia do computador, pode utilizar um slice:
+
+my_list = [17, 3, 11, 5, 1, 9, 7, 15, 13]
+largest = my_list[0]
+
+for i in my_list[1:]:
+    if i > largest:
+        largest = i
+
+print(largest)
+
+#  =============================================================================
+
+my_list = [17, 3, 11, 5, 1, 9, 7, 15, 13]
+largest = my_list[0]
+
+for i in range(1, len(my_list)):
+    if my_list[i] > largest:
+        largest = my_list[i]
+
+print(largest)
+# 17
+
+# ========================================================================Listas - alguns programas simples
+
+# Agora vamos encontrar a localização de um dado elemento dentro de uma lista:
+
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+to_find = 5
+found = False
+
+for i in range(len(my_list)):
+    found = my_list[i] == to_find
+    if found:
+        break
+
+if found:
+    print("Element found at index", i)
+else:
+    print("absent")
+# Element found at index 4
+
+
+# Nota:
+
+# ===> o valor alvo é armazenado na variável to_find ;
+# ===> o estado atual da pesquisa é armazenado na variável found (True/False)
+# ===> quando found se torna True, o loop for é saído.
+
+# Vamos supor que escolheu os seguintes números na lotaria: 3, 7, 11, 42, 34, 49.
+
+# Os números que foram sorteados são: 5, 11, 9, 42, 3, 49.
+
+# A questão é: em quantos números é que acertou?
+
+# O programa dar-lhe-á a resposta:
+
+drawn = [5, 11, 9, 42, 3, 49]
+bets = [3, 7, 11, 42, 34, 49]
+hits = 0
+
+for number in bets:
+    if number in drawn:
+        hits += 1
+
+print(hits)
+
+# Nota:
+
+# ===> a keyword drawn armazena todos os números sorteados;
+# ===> a lista bets armazena as suas apostas;
+# ===> a variável hits conta os seus êxitos.
+
+# O output do programa é: 4.
+
+#  ===================================================================
+
+# escrever um programa que remova todas as repetições de números da lista. O objetivo é ter uma lista na
+# qual todos os números não aparecem mais de uma vez.
+# Nota: suponha que a source list está codificada dentro do código - não tem de a introduzir a partir
+# do teclado. É claro que pode melhorar o código e adicionar uma parte que pode realizar uma conversa com o utilizador
+# e obter todos os dados a partir dele.
+# Dica: encorajamo-lo a criar uma nova lista como área de trabalho temporária - não precisa de atualizar
+# a lista in situ.
+
+my_list = [1, 2, 4, 4, 1, 4, 2, 6, 2, 9]
+new_list = []
+for number in my_list:  # Browse all numbers from the source list.
+	if number not in new_list:  # If the number doesn't appear within the new list...
+		new_list.append(number)  # ...append it here.
+my_list = new_list[:]  # Make a copy of new_list.
+print("The list with unique elements only:")
+print(my_list)
+# The list with unique elements only:
+# [1, 2, 4, 6, 9]
+
+# ================================================ RESUMO ============================================================
+
+# 1. Se tiver uma lista l1, então a seguinte tarefa: l2 = l1 não faz uma cópia da lista l1 , mas faz com que as
+# variáveis l1 e l2 apontem para uma e a mesma lista na memória. Por exemplo:
+
+vehicles_one = ['car', 'bicycle', 'motor']
+print(vehicles_one) # outputs: ['car', 'bicycle', 'motor']
+
+vehicles_two = vehicles_one
+del vehicles_one[0] # deletes 'car'
+print(vehicles_two) # outputs: ['bicycle', 'motor']
+
+# 2. Se quiser copiar uma lista ou parte da lista, pode fazê-lo executando slicing:
+
+colors = ['red', 'green', 'orange']
+
+copy_whole_colors = colors[:]  # copy the entire list
+copy_part_colors = colors[0:2]  # copy part of the list
+
+# 3. Também se podem utilizar índices negativos para executar slices. Por exemplo:
+
+sample_list = ["A", "B", "C", "D", "E"]
+new_list = sample_list[2:-1]
+print(new_list)  # outputs: ['C', 'D']
+
+# 4. O objeto da exceção start e end parâmetros são opcionais ao executar uma slice: list[start:end], por exemplo.:
+
+my_list = [1, 2, 3, 4, 5]
+slice_one = my_list[2: ]
+slice_two = my_list[ :2]
+slice_three = my_list[-2: ]
+
+print(slice_one)  # outputs: [3, 4, 5]
+print(slice_two)  # outputs: [1, 2]
+print(slice_three)  # outputs: [4, 5]
+
+# 5. Pode eliminar slices usando a instrução del :
+
+my_list = [1, 2, 3, 4, 5]
+del my_list[0:2]
+print(my_list)  # outputs: [3, 4, 5]
+
+del my_list[:]
+print(my_list)  # deletes the list content, outputs: []
+
+# 6. Pode testar se alguns itens existem numa lista ou não usando as keywords in e not in, por exemplo.:
+
+my_list = ["A", "B", 1, 2]
+
+print("A" in my_list)  # outputs: True
+print("C" not in my_list)  # outputs: True
+print(2 not in my_list)  # outputs: False
+
+#  ================================================================
+
+list_1 = ["A", "B", "C"]
+list_2 = list_1
+list_3 = list_2
+
+del list_1[0]
+del list_2[0]
+
+print(list_3)
+# ['C']
+
+#  ================================================================
+
+list_1 = ["A", "B", "C"]
+list_2 = list_1
+list_3 = list_2
+
+del list_1[0]
+del list_2
+
+print(list_3)
+# ['B', 'C']
+
+#  ================================================================
+
+list_1 = ["A", "B", "C"]
+list_2 = list_1
+list_3 = list_2
+
+del list_1[0]
+del list_2[:]
+
+print(list_3)
+# []
+
+#  ================================================================
+
+list_1 = ["A", "B", "C"]
+list_2 = list_1[:]
+list_3 = list_2[:]
+
+del list_1[0]
+del list_2[0]
+
+print(list_3)
+# ['A', 'B', 'C']
+
+#  ================================================================
+
+my_list = [1, 2, "in", True, "ABC"]
+
+print(1 ??? my_list)  # outputs True
+print("A" ??? my_list)  # outputs True
+print(3 ??? my_list)  # outputs True
+print(False ??? my_list)  # outputs False
+# my_list = [1, 2, "in", True, "ABC"]
+#
+# print(1 in my_list)  # outputs True
+# print("A" not in my_list)  # outputs True
+# print(3 not in my_list)  # outputs True
+# print(False in my_list)  # outputs False
+
+# =======================================================================================Listas em listas
+
+# As listas podem consistir em escalares (nomeadamente números) e elementos de uma estrutura muito mais complexa
+# (já viu exemplos como strings, booleanos, ou mesmo outras listas nas lições do Resumo da Secção anterior).
+# Vamos analisar mais de perto o caso em que os elementos de uma lista são apenas listas.
+
+# Encontramos frequentemente tais arrays (matrizes) nas nossas vidas. Provavelmente o melhor exemplo disto
+# é um tabuleiro de xadrez.
+
+# Um tabuleiro de xadrez é composto por linhas e colunas. Existem oito linhas (em inglês, rows) e oito colunas.
+# Cada coluna é marcada com as letras de A a H. Cada linha é marcada com um número de um a oito.
+
+# A localização de cada campo é identificada por pares de letras-dígitos. Assim, sabemos que o canto inferior
+# esquerdo do tabuleiro (o que tem a torre branca) é A1, enquanto que o canto oposto é H8.
+
+# Vamos assumir que somos capazes de utilizar os números selecionados para representar qualquer peça de xadrez.
+# Podemos também assumir que cada linha do tabuleiro de xadrez é uma lista.
+#
+# Veja o código abaixo:
+
+row = []
+
+for i in range(8):
+    row.append(WHITE_PAWN)
+
+
+# Constrói uma lista contendo oito elementos que representam a segunda linha do tabuleiro de xadrez - a que está cheia
+# de peões (suponha que WHITE_PAWN é um símbolo pré-definido que representa um peão branco).
+
+# O mesmo efeito pode ser alcançado através de uma compreensão de lista, a sintaxe especial utilizada por Python
+# para preencher listas massivas.
+
+# Uma compreensão de lista é na realidade uma lista, mas criada durante a execução do programa, e não é descrita
+# estaticamente.
+
+# Veja o snippet:
+
+row = [WHITE_PAWN for i in range(8)]
+
+
+# A parte do código colocada dentro dos parêntesis retos especifica:
+
+# ===> os dados a utilizar para preencher a lista (WHITE_PAWN)
+# ===>a cláusula que especifica quantas vezes os dados ocorrem dentro da lista (for i in range(8))
+
+# Deixe-nos mostrar-lhe alguns outros exemplos de compreensão de lista:
+
+# Exemplo #1:
+
+squares = [x ** 2 for x in range(10)]
+
+# O snippet produz uma lista de dez elementos preenchida com quadrados de dez números inteiros começando do
+# zero (0, 1, 4, 9, 16, 25, 36, 49, 64, 81)
+
+# Exemplo #2:
+
+twos = [2 ** i for i in range(8)]
+
+# O snippet cria um array de oito elementos contendo as primeiras oito potências de dois (1, 2, 4, 8, 16, 32, 64, 128)
+
+# Exemplo #3:
+
+odds = [x for x in squares if x % 2 != 0 ]
+
+# O snippet faz uma lista apenas com os elementos ímpares da lista squares .
+
+# =============================================================================Listas em listas: arrays bidimensionais
+
+# Vamos também assumir que um símbolo pré-definido chamado EMPTY designa um campo vazio no tabuleiro de xadrez.
+
+# Assim, se quisermos criar uma lista de listas representando todo o tabuleiro de xadrez, isso pode ser feito da
+#  seguinte forma:
+
+board = []
+
+for i in range(8):
+    row = [EMPTY for i in range(8)]
+    board.append(row)
+
+# Nota:
+
+# ===> a parte interior do loop cria uma linha composta por oito elementos (cada um deles igual a EMPTY) e
+#   anexa-o à lista board ;
+# ===> a parte externa repete-o oito vezes;
+# ===> no total, a lista board consiste em 64 elementos (todos iguais a EMPTY)
+
+# Este modelo imita perfeitamente o verdadeiro tabuleiro de xadrez, que é de facto uma lista de oito
+# elementos, sendo todos eles filas únicas. Vamos resumir as nossas observações:
+
+# ===> os elementos das filas são campos, oito deles por fila;
+# ===> os elementos do tabuleiro de xadrez são linhas, oito delas por tabuleiro de xadrez.
+
+# A variável board é agora um array bidimensional. Também é chamada, por analogia aos termos algébricos, uma matriz.
+
+# Como as compreensões de lista podem ser nested, podemos encurtar a criação do tabuleiro da seguinte forma:
+
+board = [[EMPTY for i in range(8)] for j in range(8)]
+
+# A parte interior cria uma fila, e a parte exterior constrói uma lista de filas.
+
+EMPTY = "-"
+ROOK = "ROOK"
+board = []
+
+for i in range(8):
+    row = [EMPTY for i in range(8)]
+    board.append(row)
+
+board[0][0] = ROOK
+board[0][7] = ROOK
+board[7][0] = ROOK
+board[7][7] = ROOK
+
+print(board)
+# [['ROOK', '-', '-', '-', '-', '-', '-', 'ROOK'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-',
+# '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['-', '-',
+# '-', '-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-', '-', '-', '-'], ['ROOK', '-', '-', '-', '-', '-', '-',
+# 'ROOK']]
+
+# ==========================================================Natureza multidimensional das listas: aplicações avançadas
+
+# Vamos aprofundar a natureza multidimensional das listas. Para encontrar qualquer elemento de uma lista
+# bidimensional, é preciso utilizar duas coordenadas:
+
+# ===> uma vertical (número da fila)
+# ===>e uma horizontal (número da coluna).
+
+# Imagine que desenvolve uma peça de software para uma estação meteorológica automática. O dispositivo
+# regista a temperatura do ar numa base horária e fá-lo ao longo de todo o mês. Isto dá-lhe um total de 24 & vezes;
+#  31 = 744 valores. Vamos tentar criar uma lista capaz de armazenar todos estes resultados.
+
+# Primeiro, tem de decidir que tipo de dados serão adequados para esta aplicação. Neste caso, um float seria
+# melhor, uma vez que este termómetro é capaz de medir a temperatura com uma precisão de 0,1 ℃.
+
+# De seguida, toma uma decisão arbitrária de que as filas registarão as leituras de hora em hora (por isso
+# a fila terá 24 elementos) e que cada uma das filas será atribuída a um dia do mês (vamos supor que cada mês
+# tem 31 dias, por isso precisa de 31 filas). Aqui está o par apropriado de compreensões (h é para hora, d para dia):
+
+temps = [[0.0 for h in range(24)] for d in range(31)]
+
+# Toda a matriz está agora preenchida com zeros. Pode assumir que é atualizada automaticamente utilizando agentes
+# especiais de hardware. O que tem de fazer é esperar que a matriz seja preenchida com medições.
+
+# Agora é altura de determinar a temperatura média mensal ao meio-dia. Some todas as 31 leituras registadas ao
+# meio-dia e divida a soma por 31. Pode assumir que a temperatura à meia-noite é armazenada em primeiro lugar.
+# Aqui está o código relevante:
+
+temps = [[0.0 for h in range(24)] for d in range(31)]
+#
+# The matrix is magically updated here.
+#
+
+total = 0.0
+
+for day in temps:
+    total += day[11]
+# average = total / 31
+
+print("Average temperature at noon:", average)
+# Average temperature at noon: 0.0
+
+# Nota: a variável day usada pelo loop for não é um escalar - cada passagem através da matriz temps atribui-a com
+# as linhas subsequentes da matriz; portanto, é uma lista. Tem que ser indexado com 11 para aceder ao valor da
+# temperatura medida ao meio-dia.
+
+# Agora encontre a temperatura mais alta durante todo o mês - veja o código:
+
+temps = [[0.0 for h in range(24)] for d in range(31)]
+#
+# The matrix is magically updated here.
+#
+
+highest = -100.0
+
+for day in temps:
+    for temp in day:
+        if temp > highest:
+            highest = temp
+
+print("The highest temperature was:", highest)
+# The highest temperature was: 0.0
+
+# Nota:
+
+# ===> a keyword day itera através de todas as linhas na matriz temps ;
+# ===> a variável temp itera através de todas as medições efetuadas num dia.
+
+# Agora conte os dias em que a temperatura ao meio-dia era de pelo menos 20 ℃:
+
+temps = [[0.0 for h in range(24)] for d in range(31)]
+#
+# The matrix is magically updated here.
+#
+
+hot_days = 0
+for day in temps:
+    if day[11] > 20.0:
+        hot_days += 1
+
+print(hot_days, "days were hot.")
+# 0 days were hot.
+
+# ===========================================================================Arrays tridimensionais
+
+# O Python não limita a profundidade da inclusão list-in-list. Aqui pode ver um exemplo de um array tridimensional:
+
+# Imagine um hotel. É um enorme hotel constituído por três edifícios, com 15 andares cada um. Há 20 quartos em cada
+# andar. Para tal, é necessário um array que possa recolher e processar informações sobre os quartos ocupados/livres.
+
+# Primeiro passo - o tipo de elementos do array. Neste caso, um valor booleano (True/False) caberia.
+
+# Segundo passo - análise calma da situação. Resumir a informação disponível: três edifícios, 15 andares, 20 quartos.
+
+# Agora pode criar o array:
+
+rooms = [[[False for r in range(20)] for f in range(15)] for t in range(3)]
+
+# O primeiro index (0 através 2) seleciona um dos edifícios; o segundo (0 através 14) seleciona o andar,
+# o terceiro (0 através 19) seleciona o número do quarto. Todos os quartos estão inicialmente livres.
+
+# Agora pode reservar um quarto para dois recém-casados: no segundo edifício, no décimo andar, quarto 14:
+
+rooms[1][9][13] = True
+
+# e libertar o segundo quarto no quinto andar, localizado no primeiro edifício:
+
+rooms[0][4][1] = False
+
+# Verifique se há vagas no 15º andar do terceiro edifício:
+
+vacancy = 0
+
+for room_number in range(20):
+    if not rooms[2][14][room_number]:
+        vacancy += 1
+
+# A variável vacancy contém 0 se todos os quartos estiverem ocupados, ou o número de quartos disponíveis, caso contrário.
+
+# ================================================= RESUMO =============================================================
+
+# 1. A compreensão de lista permite-lhe criar novas listas a partir de listas existentes de uma forma concisa e
+# elegante. A sintaxe de uma compreensão de lista é a seguinte:
+
+[expression for element in list if conditional]
+
+# que é na verdade um equivalente ao seguinte código:
+
+for element in list:
+    if conditional:
+        expression
+
+# Eis um exemplo de compreensão de uma lista - o código cria uma lista de cinco elementos preenchida com os primeiros
+# cinco números naturais elevados à potência de 3:
+
+cubed = [num ** 3 for num in range(5)]
+print(cubed)  # outputs: [0, 1, 8, 27, 64]
+
+# 2. Pode usar listas nested em Python para criar matrizes (ou seja, listas bidimensionais). Por exemplo:
+
+# A four-column/four-row table - a two dimensional array (4x4)
+
+table = [[":(", ":)", ":(", ":)"],
+         [":)", ":(", ":)", ":)"],
+         [":(", ":)", ":)", ":("],
+         [":)", ":)", ":)", ":("]]
+
+print(table)
+print(table[0][0])  # outputs: ':('
+print(table[0][3])  # outputs: ':)'
+
+# 3. Pode fazer nest de quantas lists-in-lists quiser, e portanto criar listas n-dimensionais, por exemplo, três,
+# quatro ou mesmo sessenta e quatro arrays dimensionais. Por exemplo:
+
+# Cube - a three-dimensional array (3x3x3)
+
+cube = [[[':(', 'x', 'x'],
+         [':)', 'x', 'x'],
+         [':(', 'x', 'x']],
+
+        [[':)', 'x', 'x'],
+         [':(', 'x', 'x'],
+         [':)', 'x', 'x']],
+
+        [[':(', 'x', 'x'],
+         [':)', 'x', 'x'],
+         [':)', 'x', 'x']]]
+
+print(cube)
+print(cube[0][0][0])  # outputs: ':('
+print(cube[2][2][0])  # outputs: ':)'
+
+#  ================================================================================================================
+
+# breve resumo dos objetivos que abordou e com os quais se familiarizou no Módulo 3:
+
+# Valores booleanos para comparar diferentes valores e controlar os caminhos de execução usando as instruções if e if-else ;
+# a utilização de loops (while e for) e como controlar o seu comportamento usando as instruções break e continue ;
+# a diferença entre as operações lógicas e as operações bitwise;
+# o conceito de listas e processamento de listas, incluindo a iteração fornecida pelo loop for , e slicing;
+# a ideia de arrays multidimensionais.
