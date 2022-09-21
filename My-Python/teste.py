@@ -1,5 +1,5 @@
-from kivy.app import App
-from kivy.uix.label import Label
+from kivy.kivy import App
+from kivy.kivy import Label
 
 class TestApp(App):
     def build(self):
