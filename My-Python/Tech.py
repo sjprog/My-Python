@@ -780,3 +780,87 @@ https://kivy.org/doc/stable/guide/widgets.html
 # ====================================================== Instalação e primeiros passos ================================
 
 
+# pip install kivy
+# python -m pip install "kivy[base]" kivy_examples
+
+# exemplo de kivy
+
+from kivy.app import App
+from kivy.uix.label import Label
+
+class Test(App):
+    def build(self):
+        return Label(text='Olá Sidney')
+Test().run()
+
+# =============================================== Linguagem KV ========================================================
+
+#  temos que criar um arquivo com o mesmo nome do arquivo .py, nesse caso e testekivy.py e testekivy.kv
+
+from kivy.app import App
+from kivy.uix.label import Label
+
+class Test(App):
+    def build(self):
+        return Label(text='Olá Sidney', font_size=60)  # almentar a fonte
+Test().run()
+
+
+#  assim vai funcionar na linguagem kv
+
+Label:
+    text:'Olá Sidney'
+    font_size:60
+
+# =================================================================
+
+from kivy.app import App
+from kivy.lang import Builder # importa a lnguagem kv
+
+class Test(App):
+    def build(self):
+        return Builder.load_file('testekivy.kv') # dessa forma o escript python é executado chamando o kv
+Test().run()
+
+# ================================================= Utilizando Classes =================================================
+
+from kivy.app import App
+from kivy.uix.label import Label # importamos novamente
+
+class Ola(Label): # criamos uma classe que importa a label kv
+    pass
+
+class Testekivy(App): # precisa ter o mesmo nome do arquivo py  e do arquivo kv
+    def build(self):
+        return Ola() # indicando que quer a classe ola
+Testekivy().run()  # precisa ter o mesmo nome do arquivo py  e do arquivo kv
+
+#  no arquivo  kv
+
+<Ola>:
+    text:'Olá Sidney Siqueira'
+    font_size:60
+
+# =============================================== escrevendo duas palavras =============================================
+
+<Ola>:
+    orientation:'vertical'
+    Label:
+        text:'Olá Sidney Siqueira'
+        font_size:60
+    Label:
+        text:'Programador Python'
+        font_size:60
+
+#  ======================================
+
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+
+class Ola(BoxLayout):
+    pass
+
+class Testekivy(App):
+    def build(self):
+        return Ola()
+Testekivy().run()
