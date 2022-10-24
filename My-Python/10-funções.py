@@ -942,3 +942,4 @@ print(strange_list_fun(5))
 # [4, 3, 2, 1, 0]
 
 # ====================================4.3.1.6 LAB: Um ano bissexto: escrever as suas próprias funções===================
+
